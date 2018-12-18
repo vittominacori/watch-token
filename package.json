@@ -1,0 +1,39 @@
+{
+  "title": "Token Watcher",
+  "name": "watch-token",
+  "version": "1.0.0",
+  "description": "A simple DApp that allows suggesting and adding a token to users of compatible wallets like MetaMask.",
+  "scripts": {
+    "lint": "eslint .vuepress",
+    "lint:fix": "eslint .vuepress --fix",
+    "dev": "vuepress dev",
+    "build": "vuepress build",
+    "deploy": "vuepress build && sh scripts/deploy.sh"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/vittominacori/watch-token/issues"
+  },
+  "license": "MIT",
+  "author": "Vittorio Minacori (https://github.com/vittominacori)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vittominacori/watch-token.git"
+  },
+  "dependencies": {
+    "web3": "0.20.6"
+  },
+  "devDependencies": {
+    "bootstrap-vue": "^2.0.0-rc.11",
+    "eslint": "^5.10.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "vee-validate": "^2.1.4",
+    "vuepress": "^0.14.8"
+  }
+}
