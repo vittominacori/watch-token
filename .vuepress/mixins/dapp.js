@@ -51,6 +51,9 @@ export default {
       contracts: {
         token: null,
       },
+      instances: {
+        token: null,
+      },
     };
   },
   methods: {
@@ -89,12 +92,28 @@ export default {
           this.web3 = new Web3(this.web3Provider);
         }
 
-        this.initContracts();
         resolve();
       });
     },
-    initContracts () {
+    initContract (address) {
       this.contracts.token = this.web3.eth.contract(TokenABI);
+      this.instances.token = this.contracts.token.at(address);
+    },
+    contractGet (field) {
+      try {
+        return new Promise((resolve) => {
+          this.instances.token[field]((err, result) => {
+            if (!err) {
+              resolve(result);
+            } else {
+              throw err;
+            }
+          });
+        });
+      } catch (e) {
+        // TODO
+        console.log(e);
+      }
     },
   },
 };
