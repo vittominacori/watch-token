@@ -14,8 +14,5 @@ export default {
       }
       return vars;
     },
-    print () {
-      window.print();
-    },
   },
 };

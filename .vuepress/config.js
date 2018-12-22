@@ -1,6 +1,6 @@
 module.exports = {
-  title: 'Token Watcher | Add your token to MetaMask',
-  description: 'A simple DApp that allows suggesting and adding a token to users of compatible wallets like MetaMask.',
+  title: 'Add your Token to DApp browsers or MetaMask',
+  description: 'A simple DApp that allows suggesting and adding a Token to users of compatible wallets like MetaMask.',
   base: '/watch-token/',
   ga: 'UA-115756440-2',
   head: [
@@ -10,7 +10,7 @@ module.exports = {
     ['meta', { property: 'og:image', content: 'https://vittominacori.github.io/watch-token/assets/images/watch-token.png' }], // eslint-disable-line max-len
     ['meta', { property: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { property: 'twitter:image', content: 'https://vittominacori.github.io/watch-token/assets/images/watch-token.png' }], // eslint-disable-line max-len
-    ['meta', { property: 'twitter:title', content: 'Token Watcher | Add your token to MetaMask' }],
+    ['meta', { property: 'twitter:title', content: 'Token Watcher | Add your Token to DApp browsers or MetaMask' }],
     ['script', { src: '/assets/js/web3.min.js' }],
   ],
   defaultNetwork: 'mainnet',
