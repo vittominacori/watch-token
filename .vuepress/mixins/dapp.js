@@ -84,36 +84,34 @@ export default {
               this.network.current = this.network.list[this.network.map[netId]];
               await this.initWeb3(network, false);
             }
+            resolve();
           });
         } else {
           console.log('provided web3');
           this.network.current = this.network.list[network];
           this.web3Provider = new Web3.providers.HttpProvider(this.network.list[network].web3Provider);
           this.web3 = new Web3(this.web3Provider);
-        }
 
-        resolve();
+          resolve();
+        }
       });
     },
     initContract (address) {
+      console.log(`init ${address} on ${this.network.current.name}`);
       this.contracts.token = this.web3.eth.contract(TokenABI);
       this.instances.token = this.contracts.token.at(address);
     },
     contractGet (field) {
-      try {
-        return new Promise((resolve) => {
-          this.instances.token[field]((err, result) => {
-            if (!err) {
-              resolve(result);
-            } else {
-              throw err;
-            }
-          });
+      return new Promise((resolve) => {
+        this.instances.token[field]((err, result) => {
+          if (!err) {
+            resolve(result);
+          } else {
+            console.log(err.message);
+            resolve(false)
+          }
         });
-      } catch (e) {
-        // TODO
-        console.log(e);
-      }
+      });
     },
   },
 };

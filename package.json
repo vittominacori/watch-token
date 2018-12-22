@@ -24,6 +24,7 @@
     "web3": "0.20.6"
   },
   "devDependencies": {
+    "@saeris/vue-spinners": "^1.0.8",
     "bootstrap-vue": "^2.0.0-rc.11",
     "eslint": "^5.10.0",
     "eslint-config-standard": "^12.0.0",

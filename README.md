@@ -6,13 +6,6 @@ component: Generator
 
 A simple DApp that allows suggesting and adding a token to users of compatible wallets like MetaMask.
 
-
-Code created using [VuePress](https://vuepress.vuejs.org/).
-
-## Smart Contracts Source
- 
-Discover Smart Contracts source [here](https://github.com/vittominacori/watch-token).
-
 ## Install dependencies
 
 ```bash

@@ -1,6 +1,17 @@
 <template>
     <b-row>
-        <b-col v-if="!loading" lg="6" offset-lg="3" class="mt-4 p-0">
+        <b-col v-if="loading" lg="6" offset-lg="3" class="mt-4 p-0">
+            <b-card bg-variant="light">
+                <ui--loader :loading="loading"></ui--loader>
+            </b-card>
+        </b-col>
+        <b-col v-if="!loading && !loaded" lg="6" offset-lg="3" class="mt-4 p-0">
+            <b-card bg-variant="light">
+                <blockquote>Some error occurred</blockquote>
+                <router-link to="/">Try adding your token</router-link>
+            </b-card>
+        </b-col>
+        <b-col v-if="loaded" lg="6" offset-lg="3" class="mt-4 p-0">
             <b-card bg-variant="light">
                 <b-media>
                     <b-img v-if="token.logo" slot="aside" :src="token.logo" rounded="circle" width="48" height="48" :alt="token.name" />
@@ -31,6 +42,7 @@
     ],
     data() {
       return {
+        loaded: false,
         loading: true,
         currentNetwork: null,
         token: {}
@@ -58,12 +70,29 @@
         this.token.name = await this.contractGet('name');
         this.token.symbol = await this.contractGet('symbol');
         this.token.decimals = (await this.contractGet('decimals')).valueOf();
-        this.token.logo = decodeURIComponent(this.getParam('logo'));
+        this.token.logo = this.getParam('logo') ? decodeURIComponent(this.getParam('logo')) : '';
+
+        if (!this.token.name || !this.token.symbol || !this.token.decimals) {
+          alert('It seems that it is not a valid Token or you are on th wrong network');
+          this.loaded = false;
+        } else {
+          this.loaded = true;
+        }
 
         this.loading = false;
       },
       watchToken () {
-        if (this.metamask.installed && !this.legacy) {
+        if (!this.metamask.installed) {
+          alert("Please install MetaMask and try again!");
+          return;
+        } else {
+          if (this.metamask.netId !== this.network.current.id) {
+            alert("Your MetaMask in on the wrong network. Please switch on " + this.network.current.name + " and try again!");
+            return;
+          }
+        }
+
+        try {
           this.web3Provider.sendAsync({
             method: 'wallet_watchAsset',
             params: {
@@ -87,6 +116,8 @@
               console.log(err.message)
             }
           });
+        } catch (e) {
+          console.log(e);
         }
       },
     },

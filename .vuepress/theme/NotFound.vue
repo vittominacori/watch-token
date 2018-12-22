@@ -4,7 +4,7 @@
             <b-row>
                 <b-col lg="8" offset-lg="2">
                     <transition name="fade" mode="out-in">
-                        <b-card class="shadow-lg" bg-variant="light">
+                        <b-card class="shadow" bg-variant="light">
                             <h1>404</h1>
                             <blockquote>{{ getMsg() }}</blockquote>
                             <router-link to="/">Take me home</router-link>.

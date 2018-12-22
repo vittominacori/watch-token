@@ -1,38 +1,54 @@
 <template>
     <b-row>
-        <b-col lg="8" offset-lg="2" class="mt-4 p-0">
+        <b-col v-if="!loaded" lg="6" offset-lg="3" class="mt-4 p-0">
             <b-card bg-variant="light" :title="$site.title">
                 <b-form @submit.prevent="getToken" class="mt-3">
                     <b-card>
                         <b-row>
-                            <b-col lg="8">
+                            <b-col lg="12">
+                                <b-form-group
+                                        label="Network"
+                                        label-for="network">
+                                    <b-form-select id="network" v-model="currentNetwork" :disabled="loading" @input="initDapp">
+                                        <option v-for="(n, k) in network.list" :value="k">{{ n.name }}</option>
+                                    </b-form-select>
+                                </b-form-group>
+                            </b-col>
+                            <b-col lg="12">
                                 <b-form-group
                                         label="Token address"
                                         label-for="tokenAddress">
-                                    <b-form-input
-                                            id="tokenAddress"
-                                            name="tokenAddress"
-                                            placeholder="Your token address"
-                                            v-model.trim="token.address"
-                                            v-validate="'required|eth_address'"
-                                            data-vv-as="token address"
-                                            :class="{'is-invalid': errors.has('tokenAddress')}">
-                                    </b-form-input>
+                                    <b-input-group>
+                                        <b-form-input
+                                                id="tokenAddress"
+                                                name="tokenAddress"
+                                                placeholder="Your token address"
+                                                :disabled="loading"
+                                                v-model.trim="token.address"
+                                                v-validate="'required|eth_address'"
+                                                data-vv-as="token address"
+                                                :class="{'is-invalid': errors.has('tokenAddress')}">
+                                        </b-form-input>
+                                        <b-input-group-append>
+                                            <b-button :disabled="loading" type="submit" variant="success">Search</b-button>
+                                        </b-input-group-append>
+                                    </b-input-group>
                                     <small v-show="errors.has('tokenAddress')" class="text-danger">
                                         {{ errors.first('tokenAddress') }}
                                     </small>
                                 </b-form-group>
-                            </b-col>
-                            <b-col lg="4">
-                                <br>
-                                <b-button variant="success" size="lg" type="submit">Search Token</b-button>
                             </b-col>
                         </b-row>
                     </b-card>
                 </b-form>
             </b-card>
         </b-col>
-        <b-col v-if="!loading" lg="6" offset-lg="3" class="mt-4 p-0">
+        <b-col v-if="loading" lg="6" offset-lg="3" class="mt-4 p-0">
+            <b-card bg-variant="light">
+                <ui--loader :loading="loading"></ui--loader>
+            </b-card>
+        </b-col>
+        <b-col v-if="loaded" lg="6" offset-lg="3" class="mt-4 p-0">
             <b-card bg-variant="light">
                 <b-form @submit.prevent="createTokenPage" class="mt-3">
                     <b-card>
@@ -45,6 +61,7 @@
                                             id="tokenAddress"
                                             name="tokenAddress"
                                             placeholder="Your token address"
+                                            readonly
                                             v-model.trim="token.address"
                                             v-validate="'required|eth_address'"
                                             data-vv-as="token address"
@@ -63,6 +80,7 @@
                                             id="tokenName"
                                             name="tokenName"
                                             placeholder="Your token name"
+                                            readonly
                                             v-model.trim="token.name"
                                             v-validate="'required'"
                                             data-vv-as="token name"
@@ -81,6 +99,7 @@
                                             id="tokenSymbol"
                                             name="tokenSymbol"
                                             placeholder="Your token symbol"
+                                            readonly
                                             v-model.trim="token.symbol"
                                             v-validate="'required'"
                                             data-vv-as="token symbol"
@@ -99,6 +118,7 @@
                                             id="tokenDecimals"
                                             name="tokenDecimals"
                                             placeholder="Your token decimals"
+                                            readonly
                                             v-model.trim="token.decimals"
                                             type="number"
                                             min="0"
@@ -116,21 +136,13 @@
                             <b-col lg="12">
                                 <b-form-group
                                         label="Token logo (optional)"
-                                        label-for="tokenLogo">
+                                        label-for="tokenLogo"
+                                        description="Suggested SVG or a transparent PNG greater than 64px.">
                                     <b-form-input
                                             id="tokenLogo"
                                             placeholder="Your token logo link"
                                             v-model.trim="token.logo">
                                     </b-form-input>
-                                </b-form-group>
-                            </b-col>
-                            <b-col lg="12">
-                                <b-form-group
-                                        label="Network"
-                                        label-for="network">
-                                    <b-form-select id="network" v-model="currentNetwork" @input="initDapp">
-                                        <option v-for="(n, k) in network.list" :value="k">{{ n.name }}</option>
-                                    </b-form-select>
                                 </b-form-group>
                             </b-col>
                         </b-row>
@@ -158,9 +170,17 @@
     ],
     data() {
       return {
-        loading: true,
+        loaded: false,
+        loading: false,
         currentNetwork: null,
-        token: {}
+        token: {
+          address: '',
+          name: '',
+          symbol: '',
+          decimals: '',
+          logo: '',
+
+        }
       };
     },
     mounted() {
@@ -186,30 +206,30 @@
       getToken () {
         this.$validator.validateAll().then(async (result) => {
           if (result) {
+            this.loaded = false;
+            this.loading = true;
+
             this.initContract(this.token.address);
 
             this.token.name = await this.contractGet('name');
             this.token.symbol = await this.contractGet('symbol');
             this.token.decimals = (await this.contractGet('decimals')).valueOf();
 
+            if (!this.token.name || !this.token.symbol || !this.token.decimals) {
+              alert('It seems that it is not a valid Token or you are on th wrong network');
+              this.loaded = false;
+            } else {
+              this.loaded = true;
+            }
+
             this.loading = false;
           }
         });
       },
       createTokenPage () {
-        if (!this.metamask.installed) {
-          alert("To create a Token please install MetaMask!");
-          return;
-        } else {
-          if (this.metamask.netId !== this.network.current.id) {
-            alert("Your MetaMask in on the wrong network. Please switch on " + this.network.current.name + " and try again!");
-            return;
-          }
-        }
-
         this.$validator.validateAll().then((result) => {
           if (result) {
-            document.location.href = this.$withBase(`detail.html?address=${this.token.address}&logo=${this.token.logo}`);
+            document.location.href = this.$withBase(`detail.html?address=${this.token.address}&network=${this.currentNetwork}&logo=${this.token.logo}`);
           }
         });
       },
