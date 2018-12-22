@@ -3,43 +3,42 @@
         <b-col v-if="!loaded" lg="6" offset-lg="3" class="mt-4 p-0">
             <b-card bg-variant="light" :title="$site.title">
                 <b-form @submit.prevent="getToken" class="mt-3">
-                    <b-card>
-                        <b-row>
-                            <b-col lg="12">
-                                <b-form-group
-                                        label="Network"
-                                        label-for="network">
-                                    <b-form-select id="network" v-model="currentNetwork" :disabled="loading" @input="initDapp">
-                                        <option v-for="(n, k) in network.list" :value="k">{{ n.name }}</option>
-                                    </b-form-select>
-                                </b-form-group>
-                            </b-col>
-                            <b-col lg="12">
-                                <b-form-group
-                                        label="Token address"
-                                        label-for="tokenAddress">
-                                    <b-input-group>
-                                        <b-form-input
-                                                id="tokenAddress"
-                                                name="tokenAddress"
-                                                placeholder="Your token address"
-                                                :disabled="loading"
-                                                v-model.trim="token.address"
-                                                v-validate="'required|eth_address'"
-                                                data-vv-as="token address"
-                                                :class="{'is-invalid': errors.has('tokenAddress')}">
-                                        </b-form-input>
-                                        <b-input-group-append>
-                                            <b-button :disabled="loading" type="submit" variant="success">Search</b-button>
-                                        </b-input-group-append>
-                                    </b-input-group>
-                                    <small v-show="errors.has('tokenAddress')" class="text-danger">
-                                        {{ errors.first('tokenAddress') }}
-                                    </small>
-                                </b-form-group>
-                            </b-col>
-                        </b-row>
-                    </b-card>
+                    <b-row>
+                        <b-col lg="12">
+                            <b-form-group
+                                    label="Network"
+                                    label-for="network">
+                                <b-form-select id="network" size="lg" v-model="currentNetwork" :disabled="loading" @input="initDapp">
+                                    <option v-for="(n, k) in network.list" :value="k">{{ n.name }}</option>
+                                </b-form-select>
+                            </b-form-group>
+                        </b-col>
+                        <b-col lg="12">
+                            <b-form-group
+                                    label="Token address"
+                                    label-for="tokenAddress">
+                                <b-input-group>
+                                    <b-form-input
+                                            id="tokenAddress"
+                                            name="tokenAddress"
+                                            placeholder="Your token address"
+                                            size="lg"
+                                            :disabled="loading"
+                                            v-model.trim="token.address"
+                                            v-validate="'required|eth_address'"
+                                            data-vv-as="token address"
+                                            :class="{'is-invalid': errors.has('tokenAddress')}">
+                                    </b-form-input>
+                                    <b-input-group-append>
+                                        <b-button :disabled="loading" type="submit" variant="success">Search</b-button>
+                                    </b-input-group-append>
+                                </b-input-group>
+                                <small v-show="errors.has('tokenAddress')" class="text-danger">
+                                    {{ errors.first('tokenAddress') }}
+                                </small>
+                            </b-form-group>
+                        </b-col>
+                    </b-row>
                 </b-form>
             </b-card>
         </b-col>
@@ -51,107 +50,110 @@
         <b-col v-if="loaded" lg="6" offset-lg="3" class="mt-4 p-0">
             <b-card bg-variant="light">
                 <b-form @submit.prevent="createTokenPage" class="mt-3">
-                    <b-card>
-                        <b-row>
-                            <b-col lg="12">
-                                <b-form-group
-                                        label="Token address"
-                                        label-for="tokenAddress">
-                                    <b-form-input
-                                            id="tokenAddress"
-                                            name="tokenAddress"
-                                            placeholder="Your token address"
-                                            readonly
-                                            v-model.trim="token.address"
-                                            v-validate="'required|eth_address'"
-                                            data-vv-as="token address"
-                                            :class="{'is-invalid': errors.has('tokenAddress')}">
-                                    </b-form-input>
-                                    <small v-show="errors.has('tokenAddress')" class="text-danger">
-                                        {{ errors.first('tokenAddress') }}
-                                    </small>
-                                </b-form-group>
-                            </b-col>
-                            <b-col lg="12">
-                                <b-form-group
-                                        label="Token name"
-                                        label-for="tokenName">
-                                    <b-form-input
-                                            id="tokenName"
-                                            name="tokenName"
-                                            placeholder="Your token name"
-                                            readonly
-                                            v-model.trim="token.name"
-                                            v-validate="'required'"
-                                            data-vv-as="token name"
-                                            :class="{'is-invalid': errors.has('tokenName')}">
-                                    </b-form-input>
-                                    <small v-show="errors.has('tokenName')" class="text-danger">
-                                        {{ errors.first('tokenName') }}
-                                    </small>
-                                </b-form-group>
-                            </b-col>
-                            <b-col lg="12">
-                                <b-form-group
-                                        label="Token symbol"
-                                        label-for="tokenSymbol">
-                                    <b-form-input
-                                            id="tokenSymbol"
-                                            name="tokenSymbol"
-                                            placeholder="Your token symbol"
-                                            readonly
-                                            v-model.trim="token.symbol"
-                                            v-validate="'required'"
-                                            data-vv-as="token symbol"
-                                            :class="{'is-invalid': errors.has('tokenSymbol')}">
-                                    </b-form-input>
-                                    <small v-show="errors.has('tokenSymbol')" class="text-danger">
-                                        {{ errors.first('tokenSymbol') }}
-                                    </small>
-                                </b-form-group>
-                            </b-col>
-                            <b-col lg="12">
-                                <b-form-group
-                                        label="Token decimals"
-                                        label-for="tokenDecimals">
-                                    <b-form-input
-                                            id="tokenDecimals"
-                                            name="tokenDecimals"
-                                            placeholder="Your token decimals"
-                                            readonly
-                                            v-model.trim="token.decimals"
-                                            type="number"
-                                            min="0"
-                                            max="36"
-                                            step="1"
-                                            v-validate="'required'"
-                                            data-vv-as="token decimals"
-                                            :class="{'is-invalid': errors.has('tokenDecimals')}">
-                                    </b-form-input>
-                                    <small v-show="errors.has('tokenDecimals')" class="text-danger">
-                                        {{ errors.first('tokenDecimals') }}
-                                    </small>
-                                </b-form-group>
-                            </b-col>
-                            <b-col lg="12">
-                                <b-form-group
-                                        label="Token logo (optional)"
-                                        label-for="tokenLogo"
-                                        description="Suggested SVG or a transparent PNG greater than 64px.">
-                                    <b-form-input
-                                            id="tokenLogo"
-                                            placeholder="Your token logo link"
-                                            v-model.trim="token.logo">
-                                    </b-form-input>
-                                </b-form-group>
-                            </b-col>
-                        </b-row>
-                        <b-row>
-                            <b-col lg="6" class="mt-3">
-                                <b-button variant="success" size="lg" type="submit">Create token page</b-button>
-                            </b-col>
-                        </b-row>
-                    </b-card>
+                    <b-row>
+                        <b-col lg="12">
+                            <b-form-group
+                                    label="Token address"
+                                    label-for="tokenAddress">
+                                <b-form-input
+                                        id="tokenAddress"
+                                        name="tokenAddress"
+                                        placeholder="Your token address"
+                                        size="lg"
+                                        readonly
+                                        v-model.trim="token.address"
+                                        v-validate="'required|eth_address'"
+                                        data-vv-as="token address"
+                                        :class="{'is-invalid': errors.has('tokenAddress')}">
+                                </b-form-input>
+                                <small v-show="errors.has('tokenAddress')" class="text-danger">
+                                    {{ errors.first('tokenAddress') }}
+                                </small>
+                            </b-form-group>
+                        </b-col>
+                        <b-col lg="12">
+                            <b-form-group
+                                    label="Token name"
+                                    label-for="tokenName">
+                                <b-form-input
+                                        id="tokenName"
+                                        name="tokenName"
+                                        placeholder="Your token name"
+                                        size="lg"
+                                        readonly
+                                        v-model.trim="token.name"
+                                        v-validate="'required'"
+                                        data-vv-as="token name"
+                                        :class="{'is-invalid': errors.has('tokenName')}">
+                                </b-form-input>
+                                <small v-show="errors.has('tokenName')" class="text-danger">
+                                    {{ errors.first('tokenName') }}
+                                </small>
+                            </b-form-group>
+                        </b-col>
+                        <b-col lg="12">
+                            <b-form-group
+                                    label="Token symbol"
+                                    label-for="tokenSymbol">
+                                <b-form-input
+                                        id="tokenSymbol"
+                                        name="tokenSymbol"
+                                        placeholder="Your token symbol"
+                                        size="lg"
+                                        readonly
+                                        v-model.trim="token.symbol"
+                                        v-validate="'required'"
+                                        data-vv-as="token symbol"
+                                        :class="{'is-invalid': errors.has('tokenSymbol')}">
+                                </b-form-input>
+                                <small v-show="errors.has('tokenSymbol')" class="text-danger">
+                                    {{ errors.first('tokenSymbol') }}
+                                </small>
+                            </b-form-group>
+                        </b-col>
+                        <b-col lg="12">
+                            <b-form-group
+                                    label="Token decimals"
+                                    label-for="tokenDecimals">
+                                <b-form-input
+                                        id="tokenDecimals"
+                                        name="tokenDecimals"
+                                        placeholder="Your token decimals"
+                                        size="lg"
+                                        readonly
+                                        v-model.trim="token.decimals"
+                                        type="number"
+                                        min="0"
+                                        max="36"
+                                        step="1"
+                                        v-validate="'required'"
+                                        data-vv-as="token decimals"
+                                        :class="{'is-invalid': errors.has('tokenDecimals')}">
+                                </b-form-input>
+                                <small v-show="errors.has('tokenDecimals')" class="text-danger">
+                                    {{ errors.first('tokenDecimals') }}
+                                </small>
+                            </b-form-group>
+                        </b-col>
+                        <b-col lg="12">
+                            <b-form-group
+                                    label="Token logo (optional)"
+                                    label-for="tokenLogo"
+                                    description="Suggested: a square SVG or PNG with transparent background (recommended greater than 64x64px).">
+                                <b-form-input
+                                        id="tokenLogo"
+                                        placeholder="Your token logo link"
+                                        size="lg"
+                                        v-model.trim="token.logo">
+                                </b-form-input>
+                            </b-form-group>
+                        </b-col>
+                    </b-row>
+                    <b-row>
+                        <b-col lg="6" class="mt-3">
+                            <b-button variant="success" size="lg" type="submit">Create token page</b-button>
+                        </b-col>
+                    </b-row>
                 </b-form>
             </b-card>
         </b-col>
