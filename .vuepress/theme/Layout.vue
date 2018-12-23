@@ -1,5 +1,5 @@
 <template>
-    <div class="page-wrapper">
+    <div class="page-wrapper mt-4">
         <b-container>
             <transition name="fade" mode="out-in">
                 <component v-if="page" :is="page" :key="page"></component>

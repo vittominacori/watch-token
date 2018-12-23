@@ -1,4 +1,12 @@
 export default {
+  data () {
+    return {
+      embedded: false
+    };
+  },
+  mounted () {
+    this.embedded = this.getParam('embedded') || false;
+  },
   methods: {
     getParam (param) {
       const vars = {};

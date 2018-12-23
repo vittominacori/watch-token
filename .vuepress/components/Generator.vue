@@ -170,7 +170,7 @@
       browser,
       dapp
     ],
-    data() {
+    data () {
       return {
         loaded: false,
         loading: false,
@@ -185,7 +185,7 @@
         }
       };
     },
-    mounted() {
+    mounted () {
       this.currentNetwork = this.getParam('network') || this.network.default;
       this.initDapp();
     },

@@ -17,15 +17,54 @@
                     <b-img v-if="token.logo" slot="aside" :src="token.logo" rounded="circle" width="48" height="48" :alt="token.name" />
                     <h4 class="card-title">{{ token.name }} ({{ token.symbol }})</h4>
                     <h6 class="card-subtitle text-muted">{{ token.address }}</h6>
+                    <small class="text-muted">Decimals: {{ token.decimals }}</small>
                 </b-media>
-                <p class="card-text"></p>
                 <div slot="footer">
                     <b-button variant="link" v-on:click="watchToken">Add to MetaMask</b-button>
                     <b-button variant="link" :href="this.network.current.etherscanLink + '/token/' + token.address" target="_blank">
                         View on Etherscan
                     </b-button>
+                    <b-button variant="link" @click="shareToken">
+                        Share
+                    </b-button>
                 </div>
             </b-card>
+            <b-modal ref="shareModal" hide-footer title="Share your token page">
+                <b-row>
+                    <b-col lg="12">
+                        <b-form-group
+                                label="Share link"
+                                label-for="tokenLink">
+                            <b-form-input
+                                    id="tokenLink"
+                                    name="tokenLink"
+                                    placeholder="Your token link"
+                                    size="lg"
+                                    readonly
+                                    v-model.trim="tokenLink">
+                            </b-form-input>
+                        </b-form-group>
+                    </b-col>
+                    <b-col lg="12">
+                        <b-form-group
+                                label="Embed code"
+                                label-for="tokenEmbed">
+                            <b-form-input id="tokenEmbed"
+                                          name="tokenEmbed"
+                                          placeholder="Your token embed"
+                                          size="lg"
+                                          readonly
+                                          v-model.trim="tokenEmbed">
+                            </b-form-input>
+                        </b-form-group>
+                    </b-col>
+                </b-row>
+            </b-modal>
+            <div v-if="embedded" class="text-right">
+                <b-link href="/" target="_blank">
+                    <small class="text-muted">Powered by watch-token</small>
+                </b-link>
+            </div>
         </b-col>
     </b-row>
 </template>
@@ -40,15 +79,17 @@
       browser,
       dapp
     ],
-    data() {
+    data () {
       return {
         loaded: false,
         loading: true,
+        tokenLink: '',
+        tokenEmbed: '',
         currentNetwork: null,
         token: {}
       };
     },
-    mounted() {
+    mounted () {
       this.currentNetwork = this.getParam('network') || this.network.default;
       this.initDapp();
     },
@@ -77,6 +118,9 @@
           this.loaded = false;
         } else {
           this.loaded = true;
+
+          this.tokenLink = window.origin + '/' + this.$withBase(`detail.html?address=${this.token.address}&network=${this.currentNetwork}&logo=${this.token.logo}`);
+          this.tokenEmbed = `<iframe src="${this.tokenLink}&embedded=1" width="510" height="320" style="border:none; overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>`;
         }
 
         this.loading = false;
@@ -120,6 +164,9 @@
           console.log(e);
         }
       },
+      shareToken () {
+        this.$refs.shareModal.show()
+      }
     },
   }
 </script>
