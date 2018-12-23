@@ -119,7 +119,7 @@
         } else {
           this.loaded = true;
 
-          this.tokenLink = window.origin + '/' + this.$withBase(`detail.html?address=${this.token.address}&network=${this.currentNetwork}&logo=${this.token.logo}`);
+          this.tokenLink = window.location.origin + this.$withBase(`/detail.html?address=${this.token.address}&network=${this.currentNetwork}&logo=${this.token.logo}`);
           this.tokenEmbed = `<iframe src="${this.tokenLink}&embedded=1" width="510" height="320" style="border:none; overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>`;
         }
 
