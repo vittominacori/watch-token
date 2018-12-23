@@ -25,7 +25,7 @@
                         View on Etherscan
                     </b-button>
                     <b-button variant="link" @click="shareToken">
-                        Share
+                        Share or Embed
                     </b-button>
                 </div>
             </b-card>
