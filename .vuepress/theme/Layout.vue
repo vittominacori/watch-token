@@ -1,5 +1,6 @@
 <template>
-    <div class="page-wrapper mt-4">
+    <div class="page-wrapper">
+        <site-header />
         <b-container>
             <transition name="fade" mode="out-in">
                 <component v-if="page" :is="page" :key="page"></component>
@@ -9,9 +10,12 @@
     </div>
 </template>
 <script>
+  import SiteHeader from './Header.vue';
   import SiteFooter from './Footer.vue';
+
   export default {
     components: {
+      SiteHeader,
       SiteFooter,
     },
     computed: {
