@@ -60,11 +60,6 @@
                     </b-col>
                 </b-row>
             </b-modal>
-            <div v-if="embedded" class="text-right">
-                <b-link href="/" target="_blank">
-                    <small class="text-muted">Powered by watch-token</small>
-                </b-link>
-            </div>
         </b-col>
     </b-row>
 </template>
@@ -154,6 +149,7 @@
               if (data.result) {
                 console.log('Token added')
               } else {
+                console.log(data);
                 console.log('Some error')
               }
             } else {

@@ -63,13 +63,13 @@ export default {
       }
 
       return new Promise((resolve) => {
-        if (checkWeb3 && (typeof ethereum !== 'undefined' || typeof web3 !== 'undefined')) {
-          if (ethereum) {
+        if (checkWeb3 && (typeof window.ethereum !== 'undefined' || typeof window.web3 !== 'undefined')) {
+          if (window.ethereum) {
             console.log('injected web3');
-            this.web3Provider = ethereum;
+            this.web3Provider = window.ethereum;
           } else {
             console.log('injected web3 (legacy)');
-            this.web3Provider = web3.currentProvider;
+            this.web3Provider = window.web3.currentProvider;
             this.legacy = true;
           }
 
