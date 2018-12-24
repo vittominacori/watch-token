@@ -19,12 +19,14 @@
                     <h6 class="card-subtitle text-muted">{{ token.address }}</h6>
                     <small class="text-muted">Decimals: {{ token.decimals }}</small>
                 </b-media>
-                <div slot="footer">
-                    <b-button variant="link" v-on:click="watchToken">Add to MetaMask</b-button>
-                    <b-button variant="link" :href="this.network.current.etherscanLink + '/token/' + token.address" target="_blank">
+                <div slot="footer" class="text-center">
+                    <b-button variant="link" class="text-secondary" v-on:click="watchToken">
+                        Add to MetaMask
+                    </b-button>
+                    <b-button variant="link" class="text-secondary" :href="this.network.current.etherscanLink + '/token/' + token.address" target="_blank">
                         View on Etherscan
                     </b-button>
-                    <b-button variant="link" @click="shareToken">
+                    <b-button variant="link" class="text-secondary" @click="shareToken">
                         Share or Embed
                     </b-button>
                 </div>

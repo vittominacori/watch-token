@@ -108,7 +108,7 @@ export default {
             resolve(result);
           } else {
             console.log(err.message);
-            resolve(false)
+            resolve(false);
           }
         });
       });

@@ -10,7 +10,7 @@ module.exports = {
     ['meta', { property: 'og:image', content: 'https://vittominacori.github.io/watch-token/assets/images/watch-token.jpg' }], // eslint-disable-line max-len
     ['meta', { property: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { property: 'twitter:image', content: 'https://vittominacori.github.io/watch-token/assets/images/watch-token.jpg' }], // eslint-disable-line max-len
-    ['meta', { property: 'twitter:title', content: 'Token Watcher | Add your Token to DApp browsers or MetaMask' }],
+    ['meta', { property: 'twitter:title', content: 'WatchToken | Add your Token to DApp browsers or MetaMask' }],
     ['script', { src: '/assets/js/web3.min.js' }],
   ],
   defaultNetwork: 'mainnet',
