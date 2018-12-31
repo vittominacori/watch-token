@@ -1,5 +1,5 @@
 ---
-component: Generator
+component: Home
 ---
 
 # WatchToken

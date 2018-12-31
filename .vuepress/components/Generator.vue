@@ -1,6 +1,6 @@
 <template>
-    <b-row>
-        <b-col v-if="!loaded" lg="6" offset-lg="3" class="mt-4 p-0">
+    <b-row class="mt-4 p-0">
+        <b-col v-if="!loaded && !loading" lg="6" offset-lg="3">
             <b-card bg-variant="light" :title="$site.title">
                 <b-form @submit.prevent="getToken" class="mt-3">
                     <b-row>
@@ -42,12 +42,12 @@
                 </b-form>
             </b-card>
         </b-col>
-        <b-col v-if="loading" lg="6" offset-lg="3" class="mt-4 p-0">
+        <b-col v-if="loading" lg="6" offset-lg="3">
             <b-card bg-variant="light">
                 <ui--loader :loading="loading"></ui--loader>
             </b-card>
         </b-col>
-        <b-col v-if="loaded" lg="6" offset-lg="3" class="mt-4 p-0">
+        <b-col v-if="loaded" lg="6" offset-lg="3">
             <b-card bg-variant="light">
                 <b-form @submit.prevent="createTokenPage" class="mt-3">
                     <b-row>
@@ -151,7 +151,7 @@
                     </b-row>
                     <b-row>
                         <b-col lg="6" class="mt-3">
-                            <b-button variant="success" size="lg" type="submit">Create token page</b-button>
+                            <b-button size="lg" variant="outline-success" type="submit">Create token page</b-button>
                         </b-col>
                     </b-row>
                 </b-form>

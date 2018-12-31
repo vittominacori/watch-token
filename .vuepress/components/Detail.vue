@@ -8,7 +8,7 @@
         <b-col v-if="!loading && !loaded" lg="6" offset-lg="3" class="mt-4 p-0">
             <b-card bg-variant="light">
                 <blockquote>Some error occurred</blockquote>
-                <router-link to="/">Try adding your token</router-link>
+                <router-link :to="$withBase('create.html')">Try adding your token</router-link>
             </b-card>
         </b-col>
         <b-col v-if="loaded" lg="6" offset-lg="3" class="mt-4 p-0">
@@ -102,25 +102,29 @@
         }
       },
       async getToken (address) {
-        this.token.address = address;
-        this.initContract(this.token.address);
+        if (address) {
+          this.token.address = address;
+          this.initContract(this.token.address);
 
-        this.token.name = await this.contractGet('name');
-        this.token.symbol = await this.contractGet('symbol');
-        this.token.decimals = (await this.contractGet('decimals')).valueOf();
-        this.token.logo = this.getParam('logo') ? decodeURIComponent(this.getParam('logo')) : '';
+          this.token.name = await this.contractGet('name');
+          this.token.symbol = await this.contractGet('symbol');
+          this.token.decimals = (await this.contractGet('decimals')).valueOf();
+          this.token.logo = this.getParam('logo') ? decodeURIComponent(this.getParam('logo')) : '';
 
-        if (!this.token.name || !this.token.symbol || !this.token.decimals) {
-          alert('It seems that it is not a valid Token or you are on th wrong network');
-          this.loaded = false;
+          if (!this.token.name || !this.token.symbol || !this.token.decimals) {
+            alert('It seems that it is not a valid Token or you are on th wrong network');
+            this.loaded = false;
+          } else {
+            this.loaded = true;
+
+            this.tokenLink = window.location.origin + this.$withBase(`/detail.html?address=${this.token.address}&network=${this.currentNetwork}&logo=${this.token.logo}`);
+            this.tokenEmbed = `<iframe src="${this.tokenLink}&embedded=1" width="510" height="320" style="border:none; overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>`;
+          }
+
+          this.loading = false;
         } else {
-          this.loaded = true;
-
-          this.tokenLink = window.location.origin + this.$withBase(`/detail.html?address=${this.token.address}&network=${this.currentNetwork}&logo=${this.token.logo}`);
-          this.tokenEmbed = `<iframe src="${this.tokenLink}&embedded=1" width="510" height="320" style="border:none; overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>`;
+          document.location.href = this.$withBase('/');
         }
-
-        this.loading = false;
       },
       watchToken () {
         if (!this.metamask.installed) {

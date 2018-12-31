@@ -7,7 +7,7 @@
 
         <b-collapse is-nav id="nav_collapse">
             <b-navbar-nav>
-                <b-nav-item to="/">Add your token</b-nav-item>
+                <b-nav-item to="/create.html">Add your Token</b-nav-item>
                 <b-nav-item target="_blank" href="https://medium.com/@vittominacori/how-to-add-token-to-metamask-fba11854f6cd">About</b-nav-item>
             </b-navbar-nav>
 
