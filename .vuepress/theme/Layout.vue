@@ -1,5 +1,5 @@
 <template>
-    <div class="page-wrapper">
+    <div class="page-wrapper mb-4">
         <site-header />
         <b-container>
             <transition name="fade" mode="out-in">
