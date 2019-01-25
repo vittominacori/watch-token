@@ -16,7 +16,7 @@
                 <b-media>
                     <b-img v-if="token.logo" slot="aside" :src="token.logo" rounded="circle" width="48" height="48" :alt="token.name" />
                     <h4 class="card-title">{{ token.name }} ({{ token.symbol }})</h4>
-                    <h6 class="card-subtitle text-muted">{{ token.address }}</h6>
+                    <h6 class="card-subtitle text-muted token-address">{{ token.address }}</h6>
                     <small class="text-muted">Decimals: {{ token.decimals }}</small>
                 </b-media>
                 <div slot="footer" class="text-center">
@@ -118,7 +118,7 @@
             this.loaded = true;
 
             this.tokenLink = window.location.origin + this.$withBase(`/detail.html?address=${this.token.address}&network=${this.currentNetwork}&logo=${this.token.logo}`);
-            this.tokenEmbed = `<iframe src="${this.tokenLink}&embedded=1" width="510" height="320" style="border:none; overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>`;
+            this.tokenEmbed = `<iframe src="${this.tokenLink}&embedded=1" style="border:none; overflow:hidden; width: 520px; max-width: 100%; height: 320px" scrolling="no" frameborder="0" allowTransparency="true"></iframe>`;
           }
 
           this.loading = false;

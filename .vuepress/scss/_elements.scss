@@ -1,3 +1,11 @@
 .custom-select {
   background: none;
 }
+
+.card {
+  .token-address {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+}
