@@ -42,7 +42,7 @@
                                     name="tokenLink"
                                     placeholder="Your token link"
                                     size="lg"
-                                    readonly
+                                    disabled
                                     v-model.trim="tokenLink">
                             </b-form-input>
                         </b-form-group>
@@ -55,7 +55,7 @@
                                           name="tokenEmbed"
                                           placeholder="Your token embed"
                                           size="lg"
-                                          readonly
+                                          disabled
                                           v-model.trim="tokenEmbed">
                             </b-form-input>
                         </b-form-group>
