@@ -42,7 +42,7 @@
                                     name="tokenLink"
                                     placeholder="Your token link"
                                     size="lg"
-                                    disabled
+                                    readonly
                                     v-model.trim="tokenLink">
                             </b-form-input>
                         </b-form-group>
@@ -51,12 +51,13 @@
                         <b-form-group
                                 label="Embed code"
                                 label-for="tokenEmbed">
-                            <b-form-input id="tokenEmbed"
-                                          name="tokenEmbed"
-                                          placeholder="Your token embed"
-                                          size="lg"
-                                          disabled
-                                          v-model.trim="tokenEmbed">
+                            <b-form-input
+                                    id="tokenEmbed"
+                                    name="tokenEmbed"
+                                    placeholder="Your token embed"
+                                    size="lg"
+                                    readonly
+                                    v-model.trim="tokenEmbed">
                             </b-form-input>
                         </b-form-group>
                     </b-col>
