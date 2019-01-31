@@ -16,7 +16,6 @@
                 <b-nav-item href="https://github.com/vittominacori" target="_blank">@vittominacori</b-nav-item>
                 <b-nav-item href="https://github.com/vittominacori/watch-token" target="_blank">Source code</b-nav-item>
             </b-navbar-nav>
-
         </b-collapse>
     </b-navbar>
 </template>
