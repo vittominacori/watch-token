@@ -64,6 +64,11 @@
                 </b-row>
             </b-modal>
         </b-col>
+        <b-col v-if="embedded" lg="6" offset-lg="3" class="text-right p-0">
+            <b-link :href="$withBase('/')" target="_blank">
+                <small class="text-muted">Powered by WatchToken</small>
+            </b-link>
+        </b-col>
     </b-row>
 </template>
 
@@ -72,10 +77,10 @@
   import dapp from '../mixins/dapp';
 
   export default {
-    name: "Detail",
+    name: 'Detail',
     mixins: [
       browser,
-      dapp
+      dapp,
     ],
     data () {
       return {
@@ -84,7 +89,7 @@
         tokenLink: '',
         tokenEmbed: '',
         currentNetwork: null,
-        token: {}
+        token: {},
       };
     },
     mounted () {
@@ -129,11 +134,11 @@
       },
       watchToken () {
         if (!this.metamask.installed) {
-          alert("Please install MetaMask and try again!");
+          alert('Please install MetaMask and try again!');
           return;
         } else {
           if (this.metamask.netId !== this.network.current.id) {
-            alert("Your MetaMask in on the wrong network. Please switch on " + this.network.current.name + " and try again!");
+            alert('Your MetaMask in on the wrong network. Please switch on ' + this.network.current.name + ' and try again!');
             return;
           }
         }
@@ -142,25 +147,25 @@
           this.web3Provider.sendAsync({
             method: 'wallet_watchAsset',
             params: {
-              "type":"ERC20",
-              "options":{
-                "address": this.token.address,
-                "symbol": this.token.symbol,
-                "decimals": this.token.decimals,
-                "image": this.token.logo,
+              'type': 'ERC20',
+              'options': {
+                'address': this.token.address,
+                'symbol': this.token.symbol,
+                'decimals': this.token.decimals,
+                'image': this.token.logo,
               },
             },
             id: Math.round(Math.random() * 100000),
           }, (err, data) => {
             if (!err) {
               if (data.result) {
-                console.log('Token added')
+                console.log('Token added');
               } else {
                 console.log(data);
-                console.log('Some error')
+                console.log('Some error');
               }
             } else {
-              console.log(err.message)
+              console.log(err.message);
             }
           });
         } catch (e) {
@@ -168,8 +173,8 @@
         }
       },
       shareToken () {
-        this.$refs.shareModal.show()
-      }
+        this.$refs.shareModal.show();
+      },
     },
-  }
+  };
 </script>

@@ -5,8 +5,8 @@
             <transition name="fade" mode="out-in">
                 <component v-if="page" :is="page" :key="page"></component>
             </transition>
-            <site-footer />
         </b-container>
+        <site-footer />
     </div>
 </template>
 <script>
@@ -19,7 +19,7 @@
       SiteFooter,
     },
     computed: {
-      page() {
+      page () {
         return this.$page.frontmatter.component || null;
       },
     },

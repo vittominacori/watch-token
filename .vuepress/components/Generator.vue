@@ -165,10 +165,10 @@
   import dapp from '../mixins/dapp';
 
   export default {
-    name: "Generator",
+    name: 'Generator',
     mixins: [
       browser,
-      dapp
+      dapp,
     ],
     data () {
       return {
@@ -182,7 +182,7 @@
           decimals: '',
           logo: '',
 
-        }
+        },
       };
     },
     mounted () {
@@ -197,9 +197,8 @@
 
           this.$validator.extend('eth_address', {
             getMessage: field => 'Insert a valid token address.',
-            validate: value => this.web3.isAddress(value)
+            validate: value => this.web3.isAddress(value),
           });
-
         } catch (e) {
           alert(e);
           document.location.href = this.$withBase('/');
@@ -236,5 +235,5 @@
         });
       },
     },
-  }
+  };
 </script>

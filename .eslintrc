@@ -3,6 +3,10 @@
     "standard",
     "plugin:promise/recommended"
   ],
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "babel-eslint"
+  },
   "plugins": [
     "promise"
   ],
@@ -49,6 +53,6 @@
     "space-before-function-paren": ["error", "always"],
 
     "promise/always-return": "off",
-    "promise/avoid-new": "off",
+    "promise/avoid-new": "off"
   }
 }
