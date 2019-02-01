@@ -11,7 +11,7 @@
                 <router-link :to="$withBase('create.html')">Try adding your token</router-link>
             </b-card>
         </b-col>
-        <b-col v-if="loaded" lg="6" offset-lg="3" class="mt-md-4 p-0">
+        <b-col v-if="loaded" lg="6" offset-lg="3" class="mt-4 p-0">
             <b-card footer-class="p-0">
                 <b-media>
                     <b-img v-if="token.logo" slot="aside" :src="token.logo" rounded="circle" width="48" height="48" :alt="token.name" />
@@ -25,9 +25,6 @@
                     </b-button>
                     <b-button variant="link" class="text-secondary" :href="this.network.current.etherscanLink + '/token/' + token.address" target="_blank">
                         <small>View on Etherscan</small>
-                    </b-button>
-                    <b-button v-if="!embedded" variant="link" class="text-secondary" @click="shareToken">
-                        <small>Share or Embed</small>
                     </b-button>
                 </div>
             </b-card>
@@ -64,9 +61,12 @@
                 </b-row>
             </b-modal>
         </b-col>
-        <b-col v-if="embedded" lg="6" offset-lg="3" class="text-right p-0">
-            <b-link :href="$withBase('/')" target="_blank">
+        <b-col lg="6" offset-lg="3" class="text-right p-0 pr-2">
+            <b-link v-if="embedded" :href="$withBase('/')" target="_blank">
                 <small class="text-muted">Powered by WatchToken</small>
+            </b-link>
+            <b-link v-else @click="shareToken">
+                <small class="text-muted">Share or Embed</small>
             </b-link>
         </b-col>
     </b-row>
@@ -124,7 +124,7 @@
             this.loaded = true;
 
             this.tokenLink = window.location.origin + this.$withBase(`/detail.html?address=${this.token.address}&network=${this.currentNetwork}&logo=${this.token.logo}`);
-            this.tokenEmbed = `<iframe src="${this.tokenLink}&embedded=1" style="border:none; overflow:hidden; width: 520px; max-width: 100%; height: 320px" scrolling="no" frameborder="0" allowTransparency="true"></iframe>`;
+            this.tokenEmbed = `<iframe src="${this.tokenLink}&embedded=1" style="border:none; overflow:hidden; width: 520px; max-width: 100%; height: 240px" scrolling="no" frameborder="0" allowTransparency="true"></iframe>`;
           }
 
           this.loading = false;
