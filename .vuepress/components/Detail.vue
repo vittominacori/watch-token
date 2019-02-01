@@ -11,8 +11,8 @@
                 <router-link :to="$withBase('create.html')">Try adding your token</router-link>
             </b-card>
         </b-col>
-        <b-col v-if="loaded" lg="6" offset-lg="3" class="mt-4 p-0">
-            <b-card bg-variant="light">
+        <b-col v-if="loaded" lg="6" offset-lg="3" class="mt-md-4 p-0">
+            <b-card footer-class="p-0">
                 <b-media>
                     <b-img v-if="token.logo" slot="aside" :src="token.logo" rounded="circle" width="48" height="48" :alt="token.name" />
                     <h4 class="card-title">{{ token.name }} ({{ token.symbol }})</h4>
@@ -21,17 +21,17 @@
                 </b-media>
                 <div slot="footer" class="text-center">
                     <b-button variant="link" class="text-secondary" v-on:click="watchToken">
-                        Add to MetaMask
+                        <small>Add to MetaMask</small>
                     </b-button>
                     <b-button variant="link" class="text-secondary" :href="this.network.current.etherscanLink + '/token/' + token.address" target="_blank">
-                        View on Etherscan
+                        <small>View on Etherscan</small>
                     </b-button>
-                    <b-button variant="link" class="text-secondary" @click="shareToken">
-                        Share or Embed
+                    <b-button v-if="!embedded" variant="link" class="text-secondary" @click="shareToken">
+                        <small>Share or Embed</small>
                     </b-button>
                 </div>
             </b-card>
-            <b-modal ref="shareModal" hide-footer title="Share your token page">
+            <b-modal ref="shareModal" hide-footer :title="`Share ${token.name} page`">
                 <b-row>
                     <b-col lg="12">
                         <b-form-group

@@ -18,9 +18,7 @@
                                     label="Token address"
                                     label-for="tokenAddress">
                                 <b-input-group>
-                                    <b-form-input
-                                            id="tokenAddress"
-                                            name="tokenAddress"
+                                    <b-form-input name="tokenAddress"
                                             placeholder="Your token address"
                                             size="lg"
                                             :disabled="loading"
