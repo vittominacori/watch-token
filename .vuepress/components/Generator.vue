@@ -215,7 +215,7 @@
             this.token.decimals = (await this.contractGet('decimals')).valueOf();
 
             if (!this.token.name || !this.token.symbol || !this.token.decimals) {
-              alert('It seems that it is not a valid Token or you are on th wrong network');
+              alert('It seems that it is not a valid Token or you are on the wrong network');
               this.loaded = false;
             } else {
               this.loaded = true;

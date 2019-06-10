@@ -118,7 +118,7 @@
           this.token.logo = this.getParam('logo') ? decodeURIComponent(this.getParam('logo')) : '';
 
           if (!this.token.name || !this.token.symbol || !this.token.decimals) {
-            alert('It seems that it is not a valid Token or you are on th wrong network');
+            alert('It seems that it is not a valid Token or you are on the wrong network');
             this.loaded = false;
           } else {
             this.loaded = true;
