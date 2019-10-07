@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     initWeb3 (network, checkWeb3) {
-      if (!this.network.list.hasOwnProperty(network)) {
+      if (!Object.prototype.hasOwnProperty.call(this.network.list, network)) {
         throw new Error(`Failed initializing network ${network}. Allowed values are mainnet, ropsten and rinkeby.`);
       }
 
@@ -100,18 +100,6 @@ export default {
       console.log(`init ${address} on ${this.network.current.name}`);
       this.contracts.token = this.web3.eth.contract(TokenABI);
       this.instances.token = this.contracts.token.at(address);
-    },
-    contractGet (field) {
-      return new Promise((resolve) => {
-        this.instances.token[field]((err, result) => {
-          if (!err) {
-            resolve(result);
-          } else {
-            console.log(err.message);
-            resolve(false);
-          }
-        });
-      });
     },
   },
 };

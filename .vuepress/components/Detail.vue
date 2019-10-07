@@ -112,9 +112,9 @@
           this.token.address = address;
           this.initContract(this.token.address);
 
-          this.token.name = await this.contractGet('name');
-          this.token.symbol = await this.contractGet('symbol');
-          this.token.decimals = (await this.contractGet('decimals')).valueOf();
+          this.token.name = await this.promisify(this.instances.token.name);
+          this.token.symbol = await this.promisify(this.instances.token.symbol);
+          this.token.decimals = (await this.promisify(this.instances.token.symbol)).valueOf();
           this.token.logo = this.getParam('logo') ? decodeURIComponent(this.getParam('logo')) : '';
 
           if (!this.token.name || !this.token.symbol || !this.token.decimals) {
