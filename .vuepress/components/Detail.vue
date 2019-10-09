@@ -114,7 +114,7 @@
 
           this.token.name = await this.promisify(this.instances.token.name);
           this.token.symbol = await this.promisify(this.instances.token.symbol);
-          this.token.decimals = (await this.promisify(this.instances.token.symbol)).valueOf();
+          this.token.decimals = (await this.promisify(this.instances.token.decimals)).valueOf();
           this.token.logo = this.getParam('logo') ? decodeURIComponent(this.getParam('logo')) : '';
 
           if (!this.token.name || !this.token.symbol || !this.token.decimals) {
