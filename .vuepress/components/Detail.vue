@@ -150,7 +150,7 @@
               'type': 'ERC20',
               'options': {
                 'address': this.token.address,
-                'symbol': this.token.symbol,
+                'symbol': this.token.symbol.substr(0, 6),
                 'decimals': this.token.decimals,
                 'image': this.token.logo,
               },
