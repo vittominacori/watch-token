@@ -2,16 +2,20 @@ export default {
   data () {
     return {
       embedded: false,
-      fallbackAddress: '0x0000000000000000000000000000000000000001',
     };
   },
   mounted () {
     this.embedded = this.getParam('embedded') || false;
   },
   methods: {
+    makeToast (title, text, variant = null) {
+      this.$bvToast.toast(text, {
+        title: title,
+        variant: variant,
+        solid: true,
+      });
+    },
     promisify (fn, ...args) {
-      args.push({ from: this.fallbackAddress });
-
       return new Promise((resolve, reject) => {
         fn(...args, (err, res) => {
           if (err) {
@@ -28,7 +32,7 @@ export default {
         /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
         function (m, key, value) { // callback
           vars[key] = value !== undefined ? value : '';
-        }
+        },
       );
 
       if (param) {

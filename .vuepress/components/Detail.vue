@@ -1,11 +1,11 @@
 <template>
-    <b-row>
-        <b-col v-if="loading" lg="6" offset-lg="3" class="mt-4 p-0">
+    <b-row class="p-0 pt-4">
+        <b-col v-if="loading" lg="6" offset-lg="3">
             <b-card bg-variant="light">
                 <ui--loader :loading="loading"></ui--loader>
             </b-card>
         </b-col>
-        <b-col v-if="!loading && !loaded" lg="6" offset-lg="3" class="mt-4 p-0">
+        <b-col v-if="!loading && !loaded" lg="6" offset-lg="3">
             <b-card bg-variant="light">
                 <blockquote>Some error occurred</blockquote>
                 <router-link :to="$withBase('create.html')">Try adding your token</router-link>
@@ -14,7 +14,13 @@
         <b-col v-if="loaded" lg="6" offset-lg="3" class="mt-4 p-0">
             <b-card footer-class="p-0">
                 <b-media>
-                    <b-img v-if="token.logo" slot="aside" :src="token.logo" rounded="circle" width="48" height="48" :alt="token.name" />
+                    <b-img v-if="token.logo"
+                           slot="aside"
+                           :src="token.logo"
+                           rounded="circle"
+                           width="48"
+                           height="48"
+                           :alt="token.name"/>
                     <h4 class="card-title">{{ token.name }} ({{ token.symbol }})</h4>
                     <h6 class="card-subtitle text-muted token-address">{{ token.address }}</h6>
                     <small class="text-muted">Decimals: {{ token.decimals }}</small>
@@ -23,7 +29,10 @@
                     <b-button variant="link" class="text-secondary" v-on:click="watchToken">
                         <small>Add to MetaMask</small>
                     </b-button>
-                    <b-button variant="link" class="text-secondary" :href="this.network.current.etherscanLink + '/token/' + token.address" target="_blank">
+                    <b-button variant="link"
+                              class="text-secondary"
+                              :href="this.network.current.etherscanLink + '/token/' + token.address"
+                              target="_blank">
                         <small>View on Etherscan</small>
                     </b-button>
                 </div>
@@ -66,7 +75,7 @@
                 <small class="text-muted">Powered by WatchToken</small>
             </b-link>
             <b-link v-else @click="shareToken">
-                <small class="text-muted">Share or Embed</small>
+                <small class="text-white">Share or Embed</small>
             </b-link>
         </b-col>
     </b-row>
@@ -112,9 +121,9 @@
           this.token.address = address;
           this.initContract(this.token.address);
 
-          this.token.name = await this.promisify(this.instances.token.name);
-          this.token.symbol = await this.promisify(this.instances.token.symbol);
-          this.token.decimals = (await this.promisify(this.instances.token.decimals)).valueOf();
+          this.token.name = await this.promisify(this.instances.token.methods.name().call);
+          this.token.symbol = await this.promisify(this.instances.token.methods.symbol().call);
+          this.token.decimals = (await this.promisify(this.instances.token.methods.decimals().call)).valueOf();
           this.token.logo = this.getParam('logo') ? decodeURIComponent(this.getParam('logo')) : '';
 
           if (!this.token.name || !this.token.symbol || !this.token.decimals) {
@@ -132,44 +141,42 @@
           document.location.href = this.$withBase('/');
         }
       },
-      watchToken () {
+      async watchToken () {
         if (!this.metamask.installed) {
           alert('Please install MetaMask and try again!');
           return;
         } else {
           if (this.metamask.netId !== this.network.current.id) {
-            alert('Your MetaMask in on the wrong network. Please switch on ' + this.network.current.name + ' and try again!');
+            alert(
+              `Your MetaMask in on the wrong network. Please switch on ${this.network.current.name} and try again!`,
+            );
             return;
           }
         }
 
         try {
-          this.web3Provider.sendAsync({
-            method: 'wallet_watchAsset',
-            params: {
-              'type': 'ERC20',
-              'options': {
-                'address': this.token.address,
-                'symbol': this.token.symbol.substr(0, 6),
-                'decimals': this.token.decimals,
-                'image': this.token.logo,
-              },
-            },
-            id: Math.round(Math.random() * 100000),
-          }, (err, data) => {
-            if (!err) {
-              if (data.result) {
-                console.log('Token added');
-              } else {
-                console.log(data);
-                console.log('Some error');
-              }
-            } else {
-              console.log(err.message);
-            }
-          });
+          await this.web3Provider.request({ method: 'eth_requestAccounts' });
+          await this.addToMetaMask();
         } catch (e) {
           console.log(e);
+        }
+      },
+      async addToMetaMask () {
+        try {
+          await this.web3Provider.request({
+            method: 'wallet_watchAsset',
+            params: {
+              type: 'ERC20',
+              options: {
+                address: this.token.address,
+                symbol: this.token.symbol.substr(0, 6),
+                decimals: this.token.decimals,
+                image: this.token.logo,
+              },
+            },
+          });
+        } catch (e) {
+          console.log(e); // eslint-disable-line no-console
         }
       },
       shareToken () {

@@ -2,10 +2,8 @@
   "title": "WatchToken",
   "name": "watch-token",
   "version": "1.0.0",
-  "description": "A simple DApp that allows suggesting and adding a token to users of compatible wallets like MetaMask.",
+  "description": "Create a link to your ERC20 Token or an embeddable Widget for your Website. Add your Token to DApp browsers or MetaMask.",
   "scripts": {
-    "lint:vue": "eslint .vuepress --ext .vue,.js",
-    "lint:vue:fix": "eslint .vuepress --ext .vue,.js --fix",
     "lint": "eslint .vuepress",
     "lint:fix": "eslint .vuepress --fix",
     "dev": "vuepress dev",
@@ -23,23 +21,24 @@
     "url": "https://github.com/vittominacori/watch-token.git"
   },
   "dependencies": {
-    "web3": "0.20.6"
+    "web3": "^1.3.0"
   },
   "devDependencies": {
     "@saeris/vue-spinners": "^1.0.8",
-    "babel-eslint": "^10.0.3",
-    "bootstrap-vue": "^2.0.3",
-    "eslint": "^6.4.1",
-    "eslint-config-standard": "^14.1.0",
+    "@vuepress/plugin-google-analytics": "^1.7.1",
+    "babel-eslint": "^10.1.0",
+    "bootstrap-vue": "^2.19.0",
+    "eslint": "^7.14.0",
+    "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-vue": "^5.2.3",
-    "node-sass": "^4.12.0",
-    "sass-loader": "^8.0.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "eslint-plugin-vue": "^7.1.0",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.0",
     "vee-validate": "^2.2.15",
     "vue-eslint-parser": "^6.0.4",
-    "vuepress": "^0.14.11"
+    "vuepress": "^1.7.1"
   }
 }

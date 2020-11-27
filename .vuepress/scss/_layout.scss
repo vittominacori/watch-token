@@ -1,4 +1,14 @@
 body {
   background: none transparent;
-  min-height: 80vh;
+
+  .main-container {
+    min-height: 100vh;
+  }
+
+  .aqua-gradient {
+    background: #2096ff!important;
+    background: -webkit-linear-gradient(50deg,#2096ff,#05ffa3)!important;
+    background: -o-linear-gradient(50deg,#2096ff,#05ffa3)!important;
+    background: linear-gradient(40deg,#2096ff,#05ffa3)!important
+  }
 }

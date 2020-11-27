@@ -1,14 +1,19 @@
 <template>
-    <b-row class="mt-4 p-0">
+    <b-row class="p-0 pt-4">
         <b-col v-if="!loaded && !loading" lg="6" offset-lg="3">
-            <b-card bg-variant="light" :title="$site.title">
+            <b-card bg-variant="light" title="Create your ERC20 Token Widget">
+                <p>{{ $frontmatter.description }}</p>
                 <b-form @submit.prevent="getToken" class="mt-3">
                     <b-row>
                         <b-col lg="12">
                             <b-form-group
                                     label="Network"
                                     label-for="network">
-                                <b-form-select id="network" size="lg" v-model="currentNetwork" :disabled="loading" @input="initDapp">
+                                <b-form-select id="network"
+                                               size="lg"
+                                               v-model="currentNetwork"
+                                               :disabled="loading"
+                                               @input="initDapp">
                                     <option v-for="(n, k) in network.list" :value="k">{{ n.name }}</option>
                                 </b-form-select>
                             </b-form-group>
@@ -19,16 +24,18 @@
                                     label-for="tokenAddress">
                                 <b-input-group>
                                     <b-form-input name="tokenAddress"
-                                            placeholder="Your token address"
-                                            size="lg"
-                                            :disabled="loading"
-                                            v-model.trim="token.address"
-                                            v-validate="'required|eth_address'"
-                                            data-vv-as="token address"
-                                            :class="{'is-invalid': errors.has('tokenAddress')}">
+                                                  placeholder="Your token address"
+                                                  size="lg"
+                                                  :disabled="loading"
+                                                  v-model.trim="token.address"
+                                                  v-validate="'required|eth_address'"
+                                                  data-vv-as="token address"
+                                                  :class="{'is-invalid': errors.has('tokenAddress')}">
                                     </b-form-input>
                                     <b-input-group-append>
-                                        <b-button :disabled="loading" type="submit" variant="success">Search</b-button>
+                                        <b-button :disabled="loading" type="submit" variant="success">
+                                            <b-icon-search></b-icon-search>
+                                        </b-button>
                                     </b-input-group-append>
                                 </b-input-group>
                                 <small v-show="errors.has('tokenAddress')" class="text-danger">
@@ -148,8 +155,10 @@
                         </b-col>
                     </b-row>
                     <b-row>
-                        <b-col lg="6" class="mt-3">
-                            <b-button size="lg" variant="outline-success" type="submit">Create token page</b-button>
+                        <b-col lg="12" class="mt-3">
+                            <b-button size="lg" variant="outline-success" block type="submit">
+                                Create Token Widget
+                            </b-button>
                         </b-col>
                     </b-row>
                 </b-form>
@@ -179,7 +188,6 @@
           symbol: '',
           decimals: '',
           logo: '',
-
         },
       };
     },
@@ -195,24 +203,30 @@
 
           this.$validator.extend('eth_address', {
             getMessage: field => 'Insert a valid token address.',
-            validate: value => this.web3.isAddress(value),
+            validate: value => this.web3.utils.isAddress(value),
           });
+
+          this.token.address = this.getParam('address') || '';
+
+          if (this.token.address !== '') {
+            this.getToken();
+          }
         } catch (e) {
           alert(e);
           document.location.href = this.$withBase('/');
         }
       },
       getToken () {
-        this.$validator.validateAll().then(async (result) => {
+        this.$validator.validateAll().then(async (result) => { // eslint-disable-line promise/catch-or-return
           if (result) {
             this.loaded = false;
             this.loading = true;
 
             this.initContract(this.token.address);
 
-            this.token.name = await this.promisify(this.instances.token.name);
-            this.token.symbol = await this.promisify(this.instances.token.symbol);
-            this.token.decimals = (await this.promisify(this.instances.token.decimals)).valueOf();
+            this.token.name = await this.promisify(this.instances.token.methods.name().call);
+            this.token.symbol = await this.promisify(this.instances.token.methods.symbol().call);
+            this.token.decimals = (await this.promisify(this.instances.token.methods.decimals().call)).valueOf();
 
             if (!this.token.name || !this.token.symbol || !this.token.decimals) {
               alert('It seems that it is not a valid Token or you are on the wrong network');
@@ -226,7 +240,7 @@
         });
       },
       createTokenPage () {
-        this.$validator.validateAll().then((result) => {
+        this.$validator.validateAll().then((result) => { // eslint-disable-line promise/catch-or-return
           if (result) {
             document.location.href = this.$withBase(`detail.html?address=${this.token.address}&network=${this.currentNetwork}&logo=${this.token.logo}`);
           }
