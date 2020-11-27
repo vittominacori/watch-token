@@ -155,7 +155,6 @@
         }
 
         try {
-          await this.web3Provider.request({ method: 'eth_requestAccounts' });
           await this.addToMetaMask();
         } catch (e) {
           console.log(e);
