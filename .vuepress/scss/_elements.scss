@@ -3,10 +3,16 @@
 }
 
 .card {
-  .token-address {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    hyphens: auto;
+  .media {
+    .token-address {
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      hyphens: auto;
+    }
+
+    &.force-pb-0 {
+      padding-bottom: 0 !important;
+    }
   }
 
   .powered-by {

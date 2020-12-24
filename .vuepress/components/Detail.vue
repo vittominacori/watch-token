@@ -13,7 +13,7 @@
         </b-col>
         <b-col v-if="loaded" lg="6" offset-lg="3" class="mt-2 p-0">
             <b-card footer-class="p-0" no-body>
-                <b-media class="p-4">
+                <b-media :class="embedded ? 'force-pb-0' : ''" class="p-4">
                     <b-img v-if="token.logo"
                            slot="aside"
                            :src="token.logo"
