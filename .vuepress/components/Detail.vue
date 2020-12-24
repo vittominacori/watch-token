@@ -11,9 +11,9 @@
                 <router-link :to="$withBase('create.html')">Try adding your token</router-link>
             </b-card>
         </b-col>
-        <b-col v-if="loaded" lg="6" offset-lg="3" class="mt-4 p-0">
-            <b-card footer-class="p-0">
-                <b-media>
+        <b-col v-if="loaded" lg="6" offset-lg="3" class="mt-2 p-0">
+            <b-card footer-class="p-0" no-body>
+                <b-media class="p-4">
                     <b-img v-if="token.logo"
                            slot="aside"
                            :src="token.logo"
@@ -25,15 +25,22 @@
                     <h6 class="card-subtitle text-muted token-address">{{ token.address }}</h6>
                     <small class="text-muted">Decimals: {{ token.decimals }}</small>
                 </b-media>
+                <div class="text-right powered-by" v-if="embedded">
+                    <b-button variant="link"
+                              :href="$withBase('/')"
+                              target="_blank">
+                        <span class="text-info">Powered by WatchToken</span>
+                    </b-button>
+                </div>
                 <div slot="footer" class="text-center">
                     <b-button variant="link" class="text-secondary" v-on:click="watchToken">
-                        <small>Add to MetaMask</small>
+                        Add to MetaMask
                     </b-button>
                     <b-button variant="link"
                               class="text-secondary"
                               :href="this.network.current.etherscanLink + '/token/' + token.address"
                               target="_blank">
-                        <small>View on Etherscan</small>
+                        View on Etherscan
                     </b-button>
                 </div>
             </b-card>
@@ -71,10 +78,7 @@
             </b-modal>
         </b-col>
         <b-col lg="6" offset-lg="3" class="text-right p-0 pr-2">
-            <b-link v-if="embedded" :href="$withBase('/')" target="_blank">
-                <small class="text-muted">Powered by WatchToken</small>
-            </b-link>
-            <b-link v-else @click="shareToken">
+            <b-link v-if="!embedded" @click="shareToken">
                 <small class="text-white">Share or Embed</small>
             </b-link>
         </b-col>

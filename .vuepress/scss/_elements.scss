@@ -8,4 +8,13 @@
     word-wrap: break-word;
     hyphens: auto;
   }
+
+  .powered-by {
+    a {
+      font-size: xx-small;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
 }
