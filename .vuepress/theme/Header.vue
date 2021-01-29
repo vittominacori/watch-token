@@ -22,7 +22,7 @@
                 <b-nav-item :href="$withBase('detail.html?address=0xB5c64c7d6b374aD738e314eAa7bCC07AEc194B7b&network=mainnet&logo=https%3A%2F%2Fvittominacori.github.io%2Fwatch-token%2Fassets%2Fimages%2Fbase-token.png')">
                     Example
                 </b-nav-item>
-                <b-nav-item target="_blank" href="https://medium.com/@vittominacori/how-to-add-token-to-metamask-fba11854f6cd">About</b-nav-item>
+                <b-nav-item target="_blank" href="https://vittominacori.medium.com/how-to-add-token-to-metamask-fba11854f6cd">About</b-nav-item>
             </b-navbar-nav>
         </b-collapse>
     </b-navbar>

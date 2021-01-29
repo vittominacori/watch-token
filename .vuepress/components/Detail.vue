@@ -26,6 +26,7 @@
                     <small class="text-muted">Decimals: {{ token.decimals }}</small>
                 </b-media>
                 <div class="text-right powered-by" v-if="embedded">
+                    <small class="text-warning">Embed will be deprecated soon</small>
                     <b-button variant="link"
                               :href="$withBase('/')"
                               target="_blank">
@@ -79,7 +80,7 @@
         </b-col>
         <b-col lg="6" offset-lg="3" class="text-right p-0 pr-2">
             <b-link v-if="!embedded" @click="shareToken">
-                <small class="text-white">Share or Embed</small>
+              <small class="text-white">Share</small>
             </b-link>
         </b-col>
     </b-row>
@@ -100,7 +101,7 @@
         loaded: false,
         loading: true,
         tokenLink: '',
-        tokenEmbed: '',
+        tokenEmbed: 'No longer available',
         currentNetwork: null,
         token: {},
       };
@@ -137,7 +138,7 @@
             this.loaded = true;
 
             this.tokenLink = window.location.origin + this.$withBase(`/detail.html?address=${this.token.address}&network=${this.currentNetwork}&logo=${this.token.logo}`);
-            this.tokenEmbed = `<iframe src="${this.tokenLink}&embedded=1" style="border:none; overflow:hidden; width: 520px; max-width: 100%; height: 240px" scrolling="no" frameborder="0" allowTransparency="true"></iframe>`;
+            // this.tokenEmbed = `<iframe src="${this.tokenLink}&embedded=1" style="border:none; overflow:hidden; width: 520px; max-width: 100%; height: 240px" scrolling="no" frameborder="0" allowTransparency="true"></iframe>`;
           }
 
           this.loading = false;
@@ -172,7 +173,7 @@
               type: 'ERC20',
               options: {
                 address: this.token.address,
-                symbol: this.token.symbol.substr(0, 6),
+                symbol: this.token.symbol.substr(0, 5),
                 decimals: this.token.decimals,
                 image: this.token.logo,
               },

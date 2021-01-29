@@ -1,13 +1,15 @@
+const vars = require('./.env.json');
+
 module.exports = {
   description: 'Create a link to your ERC20 Token or an embeddable Widget for your Website. Add your Token to DApp browsers or MetaMask.',
   base: '/watch-token/',
   plugins: [
-    [
-      '@vuepress/google-analytics',
-      {
-        ga: 'UA-115756440-2',
-      },
-    ],
+    ['@vuepress/google-analytics', {
+      ga: vars.gaId,
+    }],
+    ['vuepress-plugin-facebook-pixel', {
+      pixelId: vars.fbPixelId,
+    }],
   ],
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
@@ -20,6 +22,6 @@ module.exports = {
     ['meta', { property: 'twitter:title', content: 'WatchToken | Create a Widget for your ERC20 Token' }],
     ['script', { src: '/assets/js/web3.min.js' }],
   ],
-  defaultNetwork: 'mainnet',
-  infuraProjectId: 'be402bb729b2472ba828e013468dc626',
+  defaultNetwork: vars.defaultNetwork,
+  infuraProjectId: vars.infuraProjectId,
 };
