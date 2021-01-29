@@ -8,7 +8,7 @@
         <b-col v-if="!loading && !loaded" lg="6" offset-lg="3">
             <b-card bg-variant="light">
                 <blockquote>Some error occurred</blockquote>
-                <router-link :to="$withBase('create.html')">Try adding your token</router-link>
+                <router-link to="/create/">Try adding your token</router-link>
             </b-card>
         </b-col>
         <b-col v-if="loaded" lg="6" offset-lg="3" class="mt-2 p-0">

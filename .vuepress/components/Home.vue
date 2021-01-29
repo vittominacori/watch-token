@@ -10,13 +10,13 @@
                 </template>
                 <hr class="my-4">
                 <p>Create a link to your ERC20 Token or an embeddable Widget for your Website</p>
-                <b-button size="lg" variant="success" class="mt-2 text-uppercase p-3" :to="$withBase('create.html')">
+                <b-button size="lg" variant="success" class="mt-2 text-uppercase p-3" to="/create/">
                     Create ERC20 Widget
                 </b-button>
                 <b-button size="lg"
                           variant="outline-info"
                           class="mt-2 text-uppercase p-3"
-                          :to="$withBase('detail.html?address=0xB5c64c7d6b374aD738e314eAa7bCC07AEc194B7b&network=mainnet&logo=https%3A%2F%2Fvittominacori.github.io%2Fwatch-token%2Fassets%2Fimages%2Fbase-token.png')">
+                          to="/detail.html?address=0xB5c64c7d6b374aD738e314eAa7bCC07AEc194B7b&network=mainnet&logo=https%3A%2F%2Fvittominacori.github.io%2Fwatch-token%2Fassets%2Fimages%2Fbase-token.png">
                     Example
                 </b-button>
             </b-jumbotron>

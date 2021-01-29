@@ -242,7 +242,7 @@
       createTokenPage () {
         this.$validator.validateAll().then((result) => { // eslint-disable-line promise/catch-or-return
           if (result) {
-            document.location.href = this.$withBase(`detail.html?address=${this.token.address}&network=${this.currentNetwork}&logo=${this.token.logo}`);
+            document.location.href = this.$withBase(`/detail.html?address=${this.token.address}&network=${this.currentNetwork}&logo=${this.token.logo}`);
           }
         });
       },
