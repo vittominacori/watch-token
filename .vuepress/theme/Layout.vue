@@ -1,13 +1,13 @@
 <template>
-    <div class="page-wrapper main-container" :class="bodyClass">
-        <site-header v-if="loadLayout"/>
-        <b-container>
-            <transition name="fade" mode="out-in">
-                <component v-if="page" :is="page" :key="page"></component>
-            </transition>
-        </b-container>
-        <site-footer v-if="loadLayout"/>
-    </div>
+  <div class="page-wrapper main-container" :class="bodyClass">
+    <site-header v-if="loadLayout"/>
+    <b-container>
+      <transition name="fade" mode="out-in">
+        <component v-if="page" :is="page" :key="page"></component>
+      </transition>
+    </b-container>
+    <site-footer v-if="loadLayout"/>
+  </div>
 </template>
 <script>
   import browser from '../mixins/browser';

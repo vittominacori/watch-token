@@ -11,40 +11,40 @@
         <router-link to="/create/">Try adding your token</router-link>
       </b-card>
     </b-col>
-    <b-col v-if="loaded" lg="6" offset-lg="3" class="mt-2 p-0">
-      <b-card footer-class="p-0" no-body>
-        <b-media :class="embedded ? 'force-pb-0' : ''" class="p-4">
-          <b-img v-if="token.logo"
-                 slot="aside"
-                 :src="token.logo"
-                 rounded="circle"
-                 width="48"
-                 height="48"
-                 :alt="token.name"/>
-          <h4 class="card-title">{{ token.name }} ({{ token.symbol }})</h4>
-          <h6 class="card-subtitle text-muted token-address">{{ token.address }}</h6>
-          <small class="text-muted">Decimals: {{ token.decimals }}</small>
-        </b-media>
-        <div class="text-right powered-by" v-if="embedded">
-          <small class="text-warning">Embed will be deprecated soon</small>
-          <b-button variant="link"
-                    :href="$withBase('/')"
-                    target="_blank">
-            <span class="text-info">Powered by WatchToken</span>
-          </b-button>
-        </div>
-        <div slot="footer" class="text-center">
-          <b-button variant="link" class="text-secondary" v-on:click="watchToken">
-            Add to MetaMask
-          </b-button>
-          <b-button variant="link"
-                    class="text-secondary"
-                    :href="this.network.current.etherscanLink + '/token/' + token.address"
-                    target="_blank">
-            View on Etherscan
-          </b-button>
-        </div>
-      </b-card>
+    <b-col v-if="loaded" lg="8" offset-lg="2" class="mt-2 p-0">
+      <b-jumbotron bg-variant="light" header-level="4" class="px-3 py-4">
+        <template #header>
+          <b-media class="mb-3">
+            <b-img v-if="token.logo"
+                   slot="aside"
+                   :src="token.logo"
+                   rounded="circle"
+                   width="64"
+                   height="64"
+                   :alt="token.name"/>
+            {{ token.name }}
+          </b-media>
+        </template>
+        <template #lead>
+        </template>
+        <hr class="my-4">
+        <h6>Name: <span class="text-muted">{{ token.name }}</span></h6>
+        <h6>Symbol: <span class="text-muted">{{ token.symbol }}</span></h6>
+        <h6>Decimals: <span class="text-muted">{{ token.decimals }}</span></h6>
+        <h6>Address: <span class="text-muted">{{ token.address }}</span></h6>
+        <hr class="my-4">
+        <b-link @click="addToMetaMask" class="btn btn-success my-2">
+          <b-icon-plus-circle-fill></b-icon-plus-circle-fill>
+          Add to MetaMask
+        </b-link>
+        <b-link :href="token.etherscanLink" target="_blank" class="btn btn-primary my-2">
+          <b-icon-arrow-up-right-circle-fill></b-icon-arrow-up-right-circle-fill>
+          View on Etherscan
+        </b-link>
+        <b-link @click="shareToken" class="btn btn-info my-2 float-right">
+          <b-icon-share></b-icon-share>
+        </b-link>
+      </b-jumbotron>
       <b-modal ref="shareModal" hide-footer :title="`Share ${token.name} page`">
         <b-row>
           <b-col lg="12">
@@ -61,27 +61,8 @@
               </b-form-input>
             </b-form-group>
           </b-col>
-          <b-col lg="12">
-            <b-form-group
-                label="Embed code"
-                label-for="tokenEmbed">
-              <b-form-input
-                  id="tokenEmbed"
-                  name="tokenEmbed"
-                  placeholder="Your token embed"
-                  size="lg"
-                  readonly
-                  v-model.trim="tokenEmbed">
-              </b-form-input>
-            </b-form-group>
-          </b-col>
         </b-row>
       </b-modal>
-    </b-col>
-    <b-col lg="6" offset-lg="3" class="text-right p-0 pr-2">
-      <b-link v-if="!embedded" @click="shareToken">
-        <small class="text-white">Share</small>
-      </b-link>
     </b-col>
   </b-row>
 </template>
@@ -91,7 +72,7 @@
   import dapp from '../mixins/dapp';
 
   export default {
-    name: 'Detail',
+    name: 'Page',
     mixins: [
       browser,
       dapp,
@@ -101,7 +82,6 @@
         loaded: false,
         loading: true,
         tokenLink: '',
-        tokenEmbed: 'No longer available',
         currentNetwork: null,
         token: {},
       };
@@ -137,8 +117,9 @@
           } else {
             this.loaded = true;
 
+            this.token.etherscanLink = `${this.network.current.etherscanLink}/token/${this.token.address}`;
+
             this.tokenLink = window.location.origin + this.$withBase(`/page/?address=${this.token.address}&network=${this.currentNetwork}&logo=${this.token.logo}`);
-          // this.tokenEmbed = `<iframe src="${this.tokenLink}&embedded=1" style="border:none; overflow:hidden; width: 520px; max-width: 100%; height: 240px" scrolling="no" frameborder="0" allowTransparency="true"></iframe>`;
           }
 
           this.loading = false;
@@ -146,7 +127,7 @@
           document.location.href = this.$withBase('/');
         }
       },
-      async watchToken () {
+      async addToMetaMask () {
         if (!this.metamask.installed) {
           alert('Please install MetaMask and try again!');
           return;
@@ -159,13 +140,6 @@
           }
         }
 
-        try {
-          await this.addToMetaMask();
-        } catch (e) {
-          console.log(e);
-        }
-      },
-      async addToMetaMask () {
         try {
           await this.web3Provider.request({
             method: 'wallet_watchAsset',
