@@ -31,7 +31,7 @@
         <h6>Name: <span class="text-muted">{{ token.name }}</span></h6>
         <h6>Symbol: <span class="text-muted">{{ token.symbol }}</span></h6>
         <h6>Decimals: <span class="text-muted">{{ token.decimals }}</span></h6>
-        <h6>Address: <span class="text-muted">{{ token.address }}</span></h6>
+        <h6>Address: <span class="text-muted token-address">{{ token.address }}</span></h6>
         <hr class="my-4">
         <b-link @click="addToMetaMask" class="btn btn-success my-2">
           <b-icon-plus-circle-fill></b-icon-plus-circle-fill>
@@ -122,10 +122,10 @@
             this.token.etherscanLink = `${this.network.current.etherscanLink}/token/${this.token.address}`;
 
             const tokenHash = this.web3.utils.toHex(
-                JSON.stringify({
-                  address: this.token.address,
-                  logo: this.token.logo,
-                }),
+              JSON.stringify({
+                address: this.token.address,
+                logo: this.token.logo,
+              }),
             );
 
             this.tokenLink = window.location.origin + this.$withBase(`/page/?hash=${tokenHash}&network=${this.currentNetwork}`);

@@ -1,7 +1,7 @@
 ---
 component: Generator
 title: Create your ERC20 Token Widget | WatchToken
-description: Enter your ERC20 Token details, create your Widget and share or embed in your Website.
+description: Create a Widget for your ERC20 Token. Enter your ERC20 Token details, create a Widget and share it with your users.
 permalink: /create
 canonicalUrl: https://vittominacori.github.io/watch-token/create/
 meta:
@@ -10,9 +10,9 @@ meta:
     - property: og:title
       content: Create your ERC20 Token Widget | WatchToken
     - property: twitter:description
-      content: Enter your ERC20 Token details, create your Widget and share or embed in your Website.
+      content: Create a Widget for your ERC20 Token. Enter your ERC20 Token details, create a Widget and share it with your users.
     - property: og:description
-      content: Enter your ERC20 Token details, create your Widget and share or embed in your Website.
+      content: Create a Widget for your ERC20 Token. Enter your ERC20 Token details, create a Widget and share it with your users.
     - property: og:url
       content: https://vittominacori.github.io/watch-token/create/
 ---

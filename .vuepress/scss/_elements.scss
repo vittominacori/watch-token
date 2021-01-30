@@ -2,14 +2,14 @@
   background: none;
 }
 
+.token-address {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
 .card {
   .media {
-    .token-address {
-      overflow-wrap: break-word;
-      word-wrap: break-word;
-      hyphens: auto;
-    }
-
     &.force-pb-0 {
       padding-bottom: 0 !important;
     }

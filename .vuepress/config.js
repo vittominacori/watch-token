@@ -1,7 +1,7 @@
 const vars = require('./.env.json');
 
 module.exports = {
-  description: 'Create a link to your ERC20 Token or an embeddable Widget for your Website. Add your Token to DApp browsers or MetaMask.',
+  description: 'Create a Widget for your ERC20 Token and share it with your users. Add your Token to DApp browsers or MetaMask.',
   base: '/watch-token/',
   plugins: [
     ['@vuepress/google-analytics', {

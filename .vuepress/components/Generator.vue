@@ -1,6 +1,6 @@
 <template>
   <b-row class="p-0 pt-4">
-    <b-col v-if="!loaded && !loading" lg="6" offset-lg="3">
+    <b-col v-if="!loaded && !loading" lg="8" offset-lg="2">
       <b-card bg-variant="light" title="Create your ERC20 Token Widget">
         <p>{{ $frontmatter.description }}</p>
         <b-form @submit.prevent="getToken" class="mt-3">
@@ -20,11 +20,11 @@
             </b-col>
             <b-col lg="12">
               <b-form-group
-                  label="Token address"
+                  label="Token Address"
                   label-for="tokenAddress">
                 <b-input-group>
                   <b-form-input name="tokenAddress"
-                                placeholder="Your token address"
+                                placeholder="0x123456789..."
                                 size="lg"
                                 :disabled="loading"
                                 v-model.trim="token.address"
@@ -47,18 +47,18 @@
         </b-form>
       </b-card>
     </b-col>
-    <b-col v-if="loading" lg="6" offset-lg="3">
+    <b-col v-if="loading" lg="8" offset-lg="2">
       <b-card bg-variant="light">
         <ui--loader :loading="loading"></ui--loader>
       </b-card>
     </b-col>
-    <b-col v-if="loaded" lg="6" offset-lg="3">
+    <b-col v-if="loaded" lg="8" offset-lg="2">
       <b-card bg-variant="light">
         <b-form @submit.prevent="createTokenPage" class="mt-3">
           <b-row>
             <b-col lg="12">
               <b-form-group
-                  label="Token address"
+                  label="Address"
                   label-for="tokenAddress">
                 <b-form-input
                     id="tokenAddress"
@@ -78,7 +78,7 @@
             </b-col>
             <b-col lg="12">
               <b-form-group
-                  label="Token name"
+                  label="Name"
                   label-for="tokenName">
                 <b-form-input
                     id="tokenName"
@@ -98,7 +98,7 @@
             </b-col>
             <b-col lg="12">
               <b-form-group
-                  label="Token symbol"
+                  label="Symbol"
                   label-for="tokenSymbol">
                 <b-form-input
                     id="tokenSymbol"
@@ -118,7 +118,7 @@
             </b-col>
             <b-col lg="12">
               <b-form-group
-                  label="Token decimals"
+                  label="Decimals"
                   label-for="tokenDecimals">
                 <b-form-input
                     id="tokenDecimals"
@@ -142,7 +142,7 @@
             </b-col>
             <b-col lg="12">
               <b-form-group
-                  label="Token logo (optional)"
+                  label="Logo (optional)"
                   label-for="tokenLogo"
                   description="Suggested: a square SVG or PNG with transparent background (recommended greater than 64x64px).">
                 <b-form-input

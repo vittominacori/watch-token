@@ -9,7 +9,7 @@
           {{ $site.title }}
         </template>
         <hr class="my-4">
-        <p>Create a link to your ERC20 Token or an embeddable Widget for your Website</p>
+        <p>Create a Widget for your ERC20 Token. Add your Token to DApp browsers or MetaMask.</p>
         <b-button size="lg" variant="success" class="mt-2 text-uppercase p-3" to="/create/">
           Create ERC20 Widget
         </b-button>

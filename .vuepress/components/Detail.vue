@@ -138,10 +138,10 @@
             this.loaded = true;
 
             const tokenHash = this.web3.utils.toHex(
-                JSON.stringify({
-                  address: this.token.address,
-                  logo: this.token.logo,
-                }),
+              JSON.stringify({
+                address: this.token.address,
+                logo: this.token.logo,
+              }),
             );
 
             this.tokenLink = window.location.origin + this.$withBase(`/page/?hash=${tokenHash}&network=${this.currentNetwork}`);
