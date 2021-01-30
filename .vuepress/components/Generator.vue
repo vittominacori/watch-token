@@ -242,7 +242,14 @@
       createTokenPage () {
         this.$validator.validateAll().then((result) => { // eslint-disable-line promise/catch-or-return
           if (result) {
-            document.location.href = this.$withBase(`/page/?address=${this.token.address}&network=${this.currentNetwork}&logo=${this.token.logo}`);
+            const tokenHash = this.web3.utils.toHex(
+              JSON.stringify({
+                address: this.token.address,
+                logo: this.token.logo,
+              }),
+            );
+
+            document.location.href = this.$withBase(`/page/?hash=${tokenHash}&network=${this.currentNetwork}`);
           }
         });
       },

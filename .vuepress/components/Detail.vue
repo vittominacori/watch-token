@@ -137,8 +137,18 @@
           } else {
             this.loaded = true;
 
-            this.tokenLink = window.location.origin + this.$withBase(`/page/?address=${this.token.address}&network=${this.currentNetwork}&logo=${this.token.logo}`);
-          // this.tokenEmbed = `<iframe src="${this.tokenLink}&embedded=1" style="border:none; overflow:hidden; width: 520px; max-width: 100%; height: 240px" scrolling="no" frameborder="0" allowTransparency="true"></iframe>`;
+            const tokenHash = this.web3.utils.toHex(
+                JSON.stringify({
+                  address: this.token.address,
+                  logo: this.token.logo,
+                }),
+            );
+
+            this.tokenLink = window.location.origin + this.$withBase(`/page/?hash=${tokenHash}&network=${this.currentNetwork}`);
+
+            if (!this.embedded) {
+              document.location.href = this.tokenLink;
+            }
           }
 
           this.loading = false;

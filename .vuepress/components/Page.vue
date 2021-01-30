@@ -95,21 +95,23 @@
         this.network.current = this.network.list[this.currentNetwork];
         try {
           await this.initWeb3(this.currentNetwork, true);
-          await this.getToken(this.getParam('address'));
+          await this.getToken(decodeURIComponent(this.getParam('hash')));
         } catch (e) {
           alert(e);
           document.location.href = this.$withBase('/');
         }
       },
-      async getToken (address) {
-        if (address) {
-          this.token.address = address;
+      async getToken (tokenHash) {
+        if (tokenHash) {
+          const tokenInfo = JSON.parse(this.web3.utils.hexToAscii(tokenHash));
+
+          this.token.address = tokenInfo.address;
           this.initContract(this.token.address);
 
           this.token.name = await this.promisify(this.instances.token.methods.name().call);
           this.token.symbol = await this.promisify(this.instances.token.methods.symbol().call);
           this.token.decimals = (await this.promisify(this.instances.token.methods.decimals().call)).valueOf();
-          this.token.logo = this.getParam('logo') ? decodeURIComponent(this.getParam('logo')) : '';
+          this.token.logo = tokenInfo.logo ? tokenInfo.logo : '';
 
           if (!this.token.name || !this.token.symbol || !this.token.decimals) {
             alert('It seems that it is not a valid Token or you are on the wrong network');
@@ -119,7 +121,14 @@
 
             this.token.etherscanLink = `${this.network.current.etherscanLink}/token/${this.token.address}`;
 
-            this.tokenLink = window.location.origin + this.$withBase(`/page/?address=${this.token.address}&network=${this.currentNetwork}&logo=${this.token.logo}`);
+            const tokenHash = this.web3.utils.toHex(
+                JSON.stringify({
+                  address: this.token.address,
+                  logo: this.token.logo,
+                }),
+            );
+
+            this.tokenLink = window.location.origin + this.$withBase(`/page/?hash=${tokenHash}&network=${this.currentNetwork}`);
           }
 
           this.loading = false;
