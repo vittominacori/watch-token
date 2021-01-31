@@ -57,9 +57,25 @@
                   placeholder="Your token link"
                   size="lg"
                   readonly
-                  v-model.trim="tokenLink">
+                  v-model.trim="share.tokenLink">
               </b-form-input>
             </b-form-group>
+          </b-col>
+          <b-col lg="12">
+            <p class="share-link">
+              <b-btn :href="share.twitter" target="_blank" class="twitter">
+                <font-awesome-icon :icon="['fab', 'twitter']"/>
+              </b-btn>
+              <b-btn :href="share.facebook" target="_blank" class="facebook">
+                <font-awesome-icon :icon="['fab', 'facebook-f']"/>
+              </b-btn>
+              <b-btn :href="share.telegram" target="_blank" class="telegram">
+                <font-awesome-icon :icon="['fab', 'telegram-plane']"/>
+              </b-btn>
+              <b-btn :href="share.whatsapp" target="_blank" class="whatsapp">
+                <font-awesome-icon :icon="['fab', 'whatsapp']"/>
+              </b-btn>
+            </p>
           </b-col>
         </b-row>
       </b-modal>
@@ -81,7 +97,7 @@
       return {
         loaded: false,
         loading: true,
-        tokenLink: '',
+        share: {},
         currentNetwork: null,
         token: {},
       };
@@ -128,7 +144,12 @@
               }),
             );
 
-            this.tokenLink = window.location.origin + this.$withBase(`/page/?hash=${tokenHash}&network=${this.currentNetwork}`);
+            this.share.tokenLink = window.location.origin + this.$withBase(`/page/?hash=${tokenHash}&network=${this.currentNetwork}`); // eslint-disable-line max-len
+
+            this.share.facebook = `https://www.facebook.com/sharer.php?u=${this.share.tokenLink}&quote=Discover more about ${this.token.name} (${this.token.symbol}).`; // eslint-disable-line max-len
+            this.share.twitter = `https://twitter.com/intent/tweet?url=${this.share.tokenLink}&text=Discover more about ${this.token.name} (${this.token.symbol}).`; // eslint-disable-line max-len
+            this.share.telegram = `https://t.me/share/url?url=${this.share.tokenLink}&text=Discover more about ${this.token.name} (${this.token.symbol}).`; // eslint-disable-line max-len
+            this.share.whatsapp = `https://wa.me/?text=Discover more about ${this.token.name} (${this.token.symbol}). ${this.share.tokenLink}`; // eslint-disable-line max-len
           }
 
           this.loading = false;
