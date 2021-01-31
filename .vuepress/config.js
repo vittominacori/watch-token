@@ -30,4 +30,5 @@ module.exports = {
   ],
   defaultNetwork: vars.defaultNetwork,
   infuraProjectId: vars.infuraProjectId,
+  bitlyAccessToken: vars.bitlyAccessToken,
 };

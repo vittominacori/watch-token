@@ -1,11 +1,11 @@
 <template>
   <b-row class="p-0 pt-4">
-    <b-col v-if="loading" lg="6" offset-lg="3">
+    <b-col v-if="loading" lg="8" offset-lg="2">
       <b-card bg-variant="light">
         <ui--loader :loading="loading"></ui--loader>
       </b-card>
     </b-col>
-    <b-col v-if="!loading && !loaded" lg="6" offset-lg="3">
+    <b-col v-if="!loading && !loaded" lg="8" offset-lg="2">
       <b-card bg-variant="light">
         <blockquote>Some error occurred</blockquote>
         <router-link to="/create/">Try adding your token</router-link>
@@ -57,7 +57,7 @@
                   placeholder="Your token link"
                   size="lg"
                   readonly
-                  v-model.trim="share.tokenLink">
+                  v-model.trim="share.shortLink">
               </b-form-input>
             </b-form-group>
           </b-col>
@@ -86,12 +86,14 @@
 <script>
   import browser from '../mixins/browser';
   import dapp from '../mixins/dapp';
+  import shortener from '../mixins/shortener';
 
   export default {
     name: 'Page',
     mixins: [
       browser,
       dapp,
+      shortener,
     ],
     data () {
       return {
@@ -133,23 +135,9 @@
             alert('It seems that it is not a valid Token or you are on the wrong network');
             this.loaded = false;
           } else {
-            this.loaded = true;
-
             this.token.etherscanLink = `${this.network.current.etherscanLink}/token/${this.token.address}`;
 
-            const tokenHash = this.web3.utils.toHex(
-              JSON.stringify({
-                address: this.token.address,
-                logo: this.token.logo,
-              }),
-            );
-
-            this.share.tokenLink = window.location.origin + this.$withBase(`/page/?hash=${tokenHash}&network=${this.currentNetwork}`); // eslint-disable-line max-len
-
-            this.share.facebook = `https://www.facebook.com/sharer.php?u=${this.share.tokenLink}&quote=Discover more about ${this.token.name} (${this.token.symbol}).`; // eslint-disable-line max-len
-            this.share.twitter = `https://twitter.com/intent/tweet?url=${this.share.tokenLink}&text=Discover more about ${this.token.name} (${this.token.symbol}).`; // eslint-disable-line max-len
-            this.share.telegram = `https://t.me/share/url?url=${this.share.tokenLink}&text=Discover more about ${this.token.name} (${this.token.symbol}).`; // eslint-disable-line max-len
-            this.share.whatsapp = `https://wa.me/?text=Discover more about ${this.token.name} (${this.token.symbol}). ${this.share.tokenLink}`; // eslint-disable-line max-len
+            this.loaded = true;
           }
 
           this.loading = false;
@@ -187,7 +175,25 @@
           console.log(e); // eslint-disable-line no-console
         }
       },
-      shareToken () {
+      async shareToken () {
+        const tokenHash = this.web3.utils.toHex(
+          JSON.stringify({
+            address: this.token.address,
+            logo: this.token.logo,
+          }),
+        );
+
+        this.share.tokenLink = window.location.origin + this.$withBase(`/page/?hash=${tokenHash}&network=${this.currentNetwork}`); // eslint-disable-line max-len
+
+        this.share.shortLink = await this.shorten(this.share.tokenLink);
+
+        this.share.facebook = `https://www.facebook.com/sharer.php?u=${this.share.shortLink}&quote=Discover more about ${this.token.name} (${this.token.symbol}).`; // eslint-disable-line max-len
+        this.share.twitter = `https://twitter.com/intent/tweet?url=${this.share.shortLink}&text=Discover more about ${this.token.name} (${this.token.symbol}).`; // eslint-disable-line max-len
+        this.share.telegram = `https://t.me/share/url?url=${this.share.shortLink}&text=Discover more about ${this.token.name} (${this.token.symbol}).`; // eslint-disable-line max-len
+        this.share.whatsapp = `https://wa.me/?text=Discover more about ${this.token.name} (${this.token.symbol}). ${this.share.shortLink}`; // eslint-disable-line max-len
+
+        this.$forceUpdate();
+
         this.$refs.shareModal.show();
       },
     },
