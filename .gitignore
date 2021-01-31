@@ -1,5 +1,11 @@
 .DS_Store
+
 .idea/
-node_modules
+
+.vuepress/.env.json
 .vuepress/dist
+
+node_modules/
+
+yarn.lock
 package-lock.json

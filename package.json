@@ -2,7 +2,7 @@
   "title": "WatchToken",
   "name": "watch-token",
   "version": "1.0.0",
-  "description": "Create a link to your ERC20 Token or an embeddable Widget for your Website. Add your Token to DApp browsers or MetaMask.",
+  "description": "Create a Widget for your ERC20 Token and share it with your users. Add your Token to DApp browsers or MetaMask.",
   "scripts": {
     "lint": "eslint .vuepress",
     "lint:fix": "eslint .vuepress --fix",
@@ -21,24 +21,29 @@
     "url": "https://github.com/vittominacori/watch-token.git"
   },
   "dependencies": {
-    "web3": "^1.3.1"
+    "web3": "^1.3.3"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/vue-fontawesome": "^2.0.2",
     "@saeris/vue-spinners": "^1.0.8",
-    "@vuepress/plugin-google-analytics": "^1.7.1",
+    "@vuepress/plugin-google-analytics": "^1.8.0",
     "babel-eslint": "^10.1.0",
+    "bitly": "^7.1.2",
     "bootstrap-vue": "^2.21.2",
-    "eslint": "^7.17.0",
+    "eslint": "^7.18.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^5.0.0",
-    "eslint-plugin-vue": "^7.4.0",
+    "eslint-plugin-vue": "^7.5.0",
     "node-sass": "^5.0.0",
-    "sass-loader": "^10.1.0",
+    "sass-loader": "^10.1.1",
     "vee-validate": "2.2.15",
-    "vue-eslint-parser": "^7.3.0",
-    "vuepress": "^1.7.1"
+    "vue-eslint-parser": "^7.4.1",
+    "vuepress": "^1.8.0",
+    "vuepress-plugin-facebook-pixel": "^1.0.0"
   }
 }

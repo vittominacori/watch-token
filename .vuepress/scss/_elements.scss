@@ -2,14 +2,36 @@
   background: none;
 }
 
+.token-address {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.share-link {
+  margin-bottom: 0.5rem;
+
+  a {
+    width: 42px;
+    border: none;
+
+    &.twitter {
+      background: #1da1f2;
+    }
+    &.facebook {
+      background: #3b5998;
+    }
+    &.telegram {
+      background: #0088cc;
+    }
+    &.whatsapp {
+      background: #25d366;
+    }
+  }
+}
+
 .card {
   .media {
-    .token-address {
-      overflow-wrap: break-word;
-      word-wrap: break-word;
-      hyphens: auto;
-    }
-
     &.force-pb-0 {
       padding-bottom: 0 !important;
     }
