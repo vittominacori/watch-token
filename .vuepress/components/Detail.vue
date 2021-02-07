@@ -13,75 +13,13 @@
     </b-col>
     <b-col v-if="loaded" lg="6" offset-lg="3" class="mt-2 p-0">
       <b-card footer-class="p-0" no-body>
-        <b-media :class="embedded ? 'force-pb-0' : ''" class="p-4">
-          <b-img v-if="token.logo"
-                 slot="aside"
-                 :src="token.logo"
-                 rounded="circle"
-                 width="48"
-                 height="48"
-                 :alt="token.name"/>
-          <h4 class="card-title">{{ token.name }} ({{ token.symbol }})</h4>
-          <h6 class="card-subtitle text-muted token-address">{{ token.address }}</h6>
-          <small class="text-muted">Decimals: {{ token.decimals }}</small>
-        </b-media>
-        <div class="text-right powered-by" v-if="embedded">
-          <small class="text-warning">Embed will be deprecated soon</small>
-          <b-button variant="link"
-                    :href="$withBase('/')"
-                    target="_blank">
-            <span class="text-info">Powered by WatchToken</span>
-          </b-button>
-        </div>
-        <div slot="footer" class="text-center">
-          <b-button variant="link" class="text-secondary" v-on:click="watchToken">
-            Add to MetaMask
-          </b-button>
-          <b-button variant="link"
-                    class="text-secondary"
-                    :href="this.network.current.etherscanLink + '/token/' + token.address"
-                    target="_blank">
-            View on Etherscan
-          </b-button>
-        </div>
+        <b-alert show variant="warning" class="m-0">
+          Embed is no longer available.<br>
+          Click
+          <b-link :href="tokenLink" target="_blank">here</b-link>
+          to have more information about {{ token.name }}.
+        </b-alert>
       </b-card>
-      <b-modal ref="shareModal" hide-footer :title="`Share ${token.name} page`">
-        <b-row>
-          <b-col lg="12">
-            <b-form-group
-                label="Share link"
-                label-for="tokenLink">
-              <b-form-input
-                  id="tokenLink"
-                  name="tokenLink"
-                  placeholder="Your token link"
-                  size="lg"
-                  readonly
-                  v-model.trim="tokenLink">
-              </b-form-input>
-            </b-form-group>
-          </b-col>
-          <b-col lg="12">
-            <b-form-group
-                label="Embed code"
-                label-for="tokenEmbed">
-              <b-form-input
-                  id="tokenEmbed"
-                  name="tokenEmbed"
-                  placeholder="Your token embed"
-                  size="lg"
-                  readonly
-                  v-model.trim="tokenEmbed">
-              </b-form-input>
-            </b-form-group>
-          </b-col>
-        </b-row>
-      </b-modal>
-    </b-col>
-    <b-col lg="6" offset-lg="3" class="text-right p-0 pr-2">
-      <b-link v-if="!embedded" @click="shareToken">
-        <small class="text-white">Share</small>
-      </b-link>
     </b-col>
   </b-row>
 </template>
@@ -155,46 +93,6 @@
         } else {
           document.location.href = this.$withBase('/');
         }
-      },
-      async watchToken () {
-        if (!this.metamask.installed) {
-          alert('Please install MetaMask and try again!');
-          return;
-        } else {
-          if (this.metamask.netId !== this.network.current.id) {
-            alert(
-              `Your MetaMask in on the wrong network. Please switch on ${this.network.current.name} and try again!`,
-            );
-            return;
-          }
-        }
-
-        try {
-          await this.addToMetaMask();
-        } catch (e) {
-          console.log(e);
-        }
-      },
-      async addToMetaMask () {
-        try {
-          await this.web3Provider.request({
-            method: 'wallet_watchAsset',
-            params: {
-              type: 'ERC20',
-              options: {
-                address: this.token.address,
-                symbol: this.token.symbol.substr(0, 5),
-                decimals: this.token.decimals,
-                image: this.token.logo,
-              },
-            },
-          });
-        } catch (e) {
-          console.log(e); // eslint-disable-line no-console
-        }
-      },
-      shareToken () {
-        this.$refs.shareModal.show();
       },
     },
   };
