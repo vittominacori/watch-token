@@ -1,8 +1,11 @@
 <template>
   <b-row class="p-0 pt-4">
     <b-col v-if="!loaded && !loading" lg="8" offset-lg="2">
-      <b-card bg-variant="light" title="Create your ERC20 Token Widget">
-        <p>{{ $frontmatter.description }}</p>
+      <b-card bg-variant="light" :title="`Create your ${network.current.tokenType} Token Widget`">
+        <p>
+          Create a Widget for your {{ network.current.tokenType }} Token.
+          Enter your {{ network.current.tokenType }} Token details, create a Widget and share it with your users.
+        </p>
         <b-form @submit.prevent="getToken" class="mt-3">
           <b-row>
             <b-col lg="12">
@@ -219,23 +222,30 @@
       getToken () {
         this.$validator.validateAll().then(async (result) => { // eslint-disable-line promise/catch-or-return
           if (result) {
-            this.loaded = false;
-            this.loading = true;
-
-            this.initContract(this.token.address);
-
-            this.token.name = await this.promisify(this.instances.token.methods.name().call);
-            this.token.symbol = await this.promisify(this.instances.token.methods.symbol().call);
-            this.token.decimals = (await this.promisify(this.instances.token.methods.decimals().call)).valueOf();
-
-            if (!this.token.name || !this.token.symbol || !this.token.decimals) {
-              alert('It seems that it is not a valid Token or you are on the wrong network');
+            try {
               this.loaded = false;
-            } else {
-              this.loaded = true;
-            }
+              this.loading = true;
 
-            this.loading = false;
+              this.initContract(this.token.address);
+
+              this.token.name = await this.promisify(this.instances.token.methods.name().call);
+              this.token.symbol = await this.promisify(this.instances.token.methods.symbol().call);
+              this.token.decimals = (await this.promisify(this.instances.token.methods.decimals().call)).valueOf();
+
+              if (!this.token.name || !this.token.symbol || !this.token.decimals) {
+                alert('It seems that it is not a valid Token or you are on the wrong network');
+                this.loaded = false;
+              } else {
+                this.loaded = true;
+              }
+
+              this.loading = false;
+            } catch (e) {
+              alert('It seems that it is not a valid Token or you are on the wrong network');
+
+              this.loaded = false;
+              this.loading = false;
+            }
           }
         });
       },

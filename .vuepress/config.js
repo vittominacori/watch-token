@@ -1,7 +1,7 @@
 const vars = require('./.env.json');
 
 module.exports = {
-  description: 'Create a Widget for your ERC20 Token and share it with your users. Add your Token to DApp browsers or MetaMask.',
+  description: 'Create a Widget for your ERC20 or BEP20 Token and share it with your users. Add your Token to DApp browsers or MetaMask.',
   base: '/watch-token/',
   plugins: [
     ['@vuepress/google-analytics', {
@@ -19,7 +19,7 @@ module.exports = {
     ['meta', { property: 'og:image', content: 'https://vittominacori.github.io/watch-token/assets/images/watch-token.jpg' }], // eslint-disable-line max-len
     ['meta', { property: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { property: 'twitter:image', content: 'https://vittominacori.github.io/watch-token/assets/images/watch-token.jpg' }], // eslint-disable-line max-len
-    ['meta', { property: 'twitter:title', content: 'WatchToken | Create a Widget for your ERC20 Token' }],
+    ['meta', { property: 'twitter:title', content: 'WatchToken | Create a Widget for your ERC20 or BEP20 Token' }],
     ['script', { src: '/assets/js/web3.min.js' }],
     ['script',
       {

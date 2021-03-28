@@ -9,9 +9,12 @@
           {{ $site.title }}
         </template>
         <hr class="my-4">
-        <p>Create a Widget for your ERC20 Token. Add your Token to DApp browsers or MetaMask.</p>
-        <b-button size="lg" variant="success" class="mt-2 text-uppercase p-3" to="/create/">
+        <p>Create a Widget for your ERC20 or BEP20 Token. Add your Token to DApp browsers or MetaMask.</p>
+        <b-button size="lg" variant="info" class="mt-2 text-uppercase p-3" to="/create/">
           Create ERC20 Widget
+        </b-button>
+        <b-button size="lg" variant="warning" class="mt-2 text-uppercase p-3" to="/create/?network=bsc_mainnet">
+          Create BEP20 Widget
         </b-button>
         <b-button size="lg"
                   variant="outline-info"

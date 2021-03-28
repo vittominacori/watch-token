@@ -37,9 +37,9 @@
           <b-icon-plus-circle-fill></b-icon-plus-circle-fill>
           Add to MetaMask
         </b-link>
-        <b-link :href="token.etherscanLink" target="_blank" class="btn btn-primary my-2">
+        <b-link :href="token.explorerLink" target="_blank" class="btn btn-primary my-2">
           <b-icon-arrow-up-right-circle-fill></b-icon-arrow-up-right-circle-fill>
-          View on Etherscan
+          View on {{ network.current.explorerName }}
         </b-link>
         <b-link @click="shareToken" class="btn btn-info my-2 float-right">
           <b-icon-share></b-icon-share>
@@ -135,7 +135,7 @@
             alert('It seems that it is not a valid Token or you are on the wrong network');
             this.loaded = false;
           } else {
-            this.token.etherscanLink = `${this.network.current.etherscanLink}/token/${this.token.address}`;
+            this.token.explorerLink = `${this.network.current.explorerLink}/token/${this.token.address}`;
 
             this.loaded = true;
           }
