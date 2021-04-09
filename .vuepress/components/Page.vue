@@ -138,6 +138,8 @@
             this.token.explorerLink = `${this.network.current.explorerLink}/token/${this.token.address}`;
 
             this.loaded = true;
+
+            document.title = `${this.token.name} (${this.token.symbol}) | ${this.$page.frontmatter.title}`;
           }
 
           this.loading = false;
