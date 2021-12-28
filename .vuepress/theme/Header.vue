@@ -3,7 +3,6 @@
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
     <b-navbar-brand to="/">
-      <b-img :src="$withBase('/assets/images/base-token.png')" height="24"/>
       WatchToken
     </b-navbar-brand>
 
@@ -18,7 +17,8 @@
         </b-nav-item>
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto">
-        <b-nav-item-dropdown text="Create your Token" right>
+        <b-nav-item-dropdown text="Create Token" right>
+          <b-dropdown-item disabled>Network</b-dropdown-item>
           <b-dropdown-item target="_blank" href="https://vittominacori.github.io/erc20-generator/">Ethereum</b-dropdown-item>
           <b-dropdown-item target="_blank" href="https://vittominacori.github.io/bep20-generator/">Binance Smart Chain</b-dropdown-item>
           <b-dropdown-item target="_blank" href="https://vittominacori.github.io/polygon-generator/">Polygon</b-dropdown-item>

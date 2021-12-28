@@ -13,38 +13,38 @@
           Create a Widget for your ERC20 or BEP20 Token.<br>
           Add your Token to DApp browsers or MetaMask both on Ethereum, Binance Smart Chain or Polygon Network.
         </p>
-        <b-button size="sm" variant="info" class="mt-2 text-uppercase p-3" to="/create/">
+        <b-button size="sm" variant="info" class="mt-2 text-uppercase p-3 btn-sm-block" to="/create/">
           Ethereum
         </b-button>
-        <b-button size="sm" variant="warning" class="mt-2 text-uppercase p-3" to="/create/?network=bsc_mainnet">
+        <b-button size="sm" variant="warning" class="mt-2 text-uppercase p-3 btn-sm-block" to="/create/?network=bsc_mainnet">
           Binance Smart Chain
         </b-button>
-        <b-button size="sm" variant="violet" class="mt-2 text-uppercase p-3" to="/create/?network=polygon_mainnet">
+        <b-button size="sm" variant="violet" class="mt-2 text-uppercase p-3 btn-sm-block" to="/create/?network=polygon_mainnet">
           Polygon
         </b-button>
       </b-jumbotron>
     </b-col>
     <b-col lg="8" offset-lg="2">
       <b-jumbotron bg-variant="dark" text-variant="light">
-        <h4>Want to create your ERC20 or BEP20 Token?</h4>
-        <p>Use ERC20 or BEP20 Token Generator to create your own Token in less than a minute.</p>
-        <b-button size="lg"
+        <h4>Want to create your own Token?</h4>
+        <p>Use Token Generator to create your own Token in less than a minute.</p>
+        <b-button size="sm"
                   variant="outline-info"
-                  class="mt-2 text-uppercase p-3"
+                  class="mt-2 text-uppercase p-3 btn-sm-block"
                   href="https://vittominacori.github.io/erc20-generator/"
                   target="_blank">
           ERC20 on Ethereum
         </b-button>
-        <b-button size="lg"
+        <b-button size="sm"
                   variant="outline-warning"
-                  class="mt-2 text-uppercase p-3"
+                  class="mt-2 text-uppercase p-3 btn-sm-block"
                   href="https://vittominacori.github.io/bep20-generator/"
                   target="_blank">
           BEP20 on BSC
         </b-button>
-        <b-button size="lg"
+        <b-button size="sm"
                   variant="outline-violet"
-                  class="mt-2 text-uppercase p-3"
+                  class="mt-2 text-uppercase p-3 btn-sm-block"
                   href="https://vittominacori.github.io/polygon-generator/"
                   target="_blank">
           ERC20 on Polygon
