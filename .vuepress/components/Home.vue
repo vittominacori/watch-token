@@ -11,7 +11,7 @@
         <hr class="my-4">
         <p>
           Create a Widget for your ERC20 or BEP20 Token.<br>
-          Add your Token to DApp browsers or MetaMask.
+          Add your Token to DApp browsers or MetaMask both on Ethereum, Binance Smart Chain or Polygon Network.
         </p>
         <b-button size="sm" variant="info" class="mt-2 text-uppercase p-3" to="/create/">
           Ethereum
