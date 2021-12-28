@@ -24,6 +24,7 @@ export default {
         },
         list: {
           mainnet: {
+            blockchain: 'Ethereum',
             tokenType: 'ERC20',
             web3Provider: `https://mainnet.infura.io/v3/${config.infuraProjectId}`,
             explorerLink: 'https://etherscan.io',
@@ -32,6 +33,7 @@ export default {
             name: 'Main Ethereum Network',
           },
           ropsten: {
+            blockchain: 'Ethereum',
             tokenType: 'ERC20',
             web3Provider: `https://ropsten.infura.io/v3/${config.infuraProjectId}`,
             explorerLink: 'https://ropsten.etherscan.io',
@@ -40,6 +42,7 @@ export default {
             name: 'Ropsten Test Network',
           },
           rinkeby: {
+            blockchain: 'Ethereum',
             tokenType: 'ERC20',
             web3Provider: `https://rinkeby.infura.io/v3/${config.infuraProjectId}`,
             explorerLink: 'https://rinkeby.etherscan.io',
@@ -48,6 +51,7 @@ export default {
             name: 'Rinkeby Test Network',
           },
           kovan: {
+            blockchain: 'Ethereum',
             tokenType: 'ERC20',
             web3Provider: `https://kovan.infura.io/v3/${config.infuraProjectId}`,
             explorerLink: 'https://kovan.etherscan.io',
@@ -56,6 +60,7 @@ export default {
             name: 'Kovan Test Network',
           },
           goerli: {
+            blockchain: 'Ethereum',
             tokenType: 'ERC20',
             web3Provider: `https://goerli.infura.io/v3/${config.infuraProjectId}`,
             explorerLink: 'https://goerli.etherscan.io',
@@ -64,22 +69,47 @@ export default {
             name: 'Goerli Test Network',
           },
           bsc_mainnet: {
+            blockchain: 'Binance Smart Chain',
             tokenType: 'BEP20',
             web3Provider: 'https://bsc-dataseed.binance.org/',
             explorerLink: 'https://bscscan.com',
             explorerName: 'BscScan',
             id: 56,
-            name: 'Binance Smart Chain',
+            name: 'BSC Mainnet',
           },
           bsc_testnet: {
+            blockchain: 'Binance Smart Chain',
             tokenType: 'BEP20',
             web3Provider: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
             explorerLink: 'https://testnet.bscscan.com',
             explorerName: 'BscScan',
             id: 97,
-            name: 'Binance Smart Chain - Testnet',
+            name: 'BSC Testnet',
+          },
+          polygon_mainnet: {
+            blockchain: 'Polygon',
+            tokenType: 'ERC20',
+            web3Provider: 'https://polygon-rpc.com/',
+            explorerLink: 'https://polygonscan.com',
+            explorerName: 'PolygonScan',
+            id: 137,
+            name: 'Polygon Mainnet',
+          },
+          polygon_mumbai: {
+            blockchain: 'Polygon',
+            tokenType: 'ERC20',
+            web3Provider: 'https://rpc-mumbai.maticvigil.com/',
+            explorerLink: 'https://mumbai.polygonscan.com',
+            explorerName: 'PolygonScan',
+            id: 80001,
+            name: 'Matic Mumbai',
           },
         },
+        blockchains: [
+          'Ethereum',
+          'Binance Smart Chain',
+          'Polygon',
+        ],
       },
       contracts: {
         token: null,

@@ -14,7 +14,11 @@
                                v-model="currentNetwork"
                                :disabled="loading"
                                @input="initDapp">
-                  <option v-for="(n, k) in network.list" :value="k">{{ n.name }}</option>
+                  <b-form-select-option-group v-for="b in network.blockchains" :label="b">
+                    <b-form-select-option v-for="(n, k) in network.list" :value="k" v-if="n.blockchain === b">
+                      {{ n.name }}
+                    </b-form-select-option>
+                  </b-form-select-option-group>
                 </b-form-select>
               </b-form-group>
             </b-col>

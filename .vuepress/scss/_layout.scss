@@ -11,4 +11,27 @@ body {
     background: -o-linear-gradient(50deg,#2096ff,#05ffa3)!important;
     background: linear-gradient(40deg,#2096ff,#05ffa3)!important
   }
+
+  .btn-violet {
+    background-color: #8247e5;
+    border-color: #8247e5;
+    color: #ffffff;
+
+    &:hover {
+      background-color: #651fda;
+      border-color: #651fda;
+      color: #ffffff;
+    }
+  }
+
+  .btn-outline-violet {
+    color: #8247e5;
+    border-color: #8247e5;
+
+    &:hover {
+      background-color: #8247e5;
+      border-color: #8247e5;
+      color: #ffffff;
+    }
+  }
 }
