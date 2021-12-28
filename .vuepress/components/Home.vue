@@ -13,13 +13,22 @@
           Create a Widget for your ERC20 or BEP20 Token.<br>
           Add your Token to DApp browsers or MetaMask both on Ethereum, Binance Smart Chain or Polygon Network.
         </p>
-        <b-button size="sm" variant="info" class="mt-2 text-uppercase p-3 btn-sm-block" to="/create/">
+        <b-button size="sm"
+                  variant="info"
+                  class="mt-2 text-uppercase p-3 btn-sm-block"
+                  to="/create/">
           Ethereum
         </b-button>
-        <b-button size="sm" variant="warning" class="mt-2 text-uppercase p-3 btn-sm-block" to="/create/?network=bsc_mainnet">
+        <b-button size="sm"
+                  variant="warning"
+                  class="mt-2 text-uppercase p-3 btn-sm-block"
+                  to="/create/?network=bsc_mainnet">
           Binance Smart Chain
         </b-button>
-        <b-button size="sm" variant="violet" class="mt-2 text-uppercase p-3 btn-sm-block" to="/create/?network=polygon_mainnet">
+        <b-button size="sm"
+                  variant="violet"
+                  class="mt-2 text-uppercase p-3 btn-sm-block"
+                  to="/create/?network=polygon_mainnet">
           Polygon
         </b-button>
       </b-jumbotron>

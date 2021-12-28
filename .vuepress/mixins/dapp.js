@@ -68,7 +68,7 @@ export default {
             id: 5,
             name: 'Goerli Test Network',
           },
-          bsc_mainnet: {
+          bsc_mainnet: { // eslint-disable-line camelcase
             blockchain: 'Binance Smart Chain',
             tokenType: 'BEP20',
             web3Provider: 'https://bsc-dataseed.binance.org/',
@@ -77,7 +77,7 @@ export default {
             id: 56,
             name: 'BSC Mainnet',
           },
-          bsc_testnet: {
+          bsc_testnet: { // eslint-disable-line camelcase
             blockchain: 'Binance Smart Chain',
             tokenType: 'BEP20',
             web3Provider: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
@@ -86,7 +86,7 @@ export default {
             id: 97,
             name: 'BSC Testnet',
           },
-          polygon_mainnet: {
+          polygon_mainnet: { // eslint-disable-line camelcase
             blockchain: 'Polygon',
             tokenType: 'ERC20',
             web3Provider: 'https://polygon-rpc.com/',
@@ -95,7 +95,7 @@ export default {
             id: 137,
             name: 'Polygon Mainnet',
           },
-          polygon_mumbai: {
+          polygon_mumbai: { // eslint-disable-line camelcase
             blockchain: 'Polygon',
             tokenType: 'ERC20',
             web3Provider: 'https://rpc-mumbai.maticvigil.com/',
