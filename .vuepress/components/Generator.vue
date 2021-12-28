@@ -1,10 +1,10 @@
 <template>
   <b-row class="p-0 pt-4">
     <b-col v-if="!loaded && !loading" lg="8" offset-lg="2">
-      <b-card bg-variant="light" :title="`Create your ${network.current.tokenType} Token Widget`">
+      <b-card bg-variant="light" :title="`Create your ${tokenType} Token Widget`">
         <p>
-          Create a Widget for your <b>{{ network.current.tokenType }}</b>
-          Token on <b>{{ network.current.blockchain }}</b>.<br>
+          Create a Widget for your <b>{{ tokenType }}</b>
+          Token on <b>{{ blockchain }}</b>.<br>
           Enter your Token details, create a Widget and share it with your users.
         </p>
         <b-form @submit.prevent="getToken" class="mt-3">
@@ -198,6 +198,14 @@
           logo: '',
         },
       };
+    },
+    computed: {
+      tokenType () {
+        return this.network.current ? this.network.current.tokenType : 'ERC20';
+      },
+      blockchain () {
+        return this.network.current ? this.network.current.blockchain : 'Ethereum';
+      },
     },
     mounted () {
       this.currentNetwork = this.getParam('network') || this.network.default;
