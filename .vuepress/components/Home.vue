@@ -40,21 +40,21 @@
         <b-button size="sm"
                   variant="outline-info"
                   class="mt-2 text-uppercase p-3 btn-sm-block"
-                  href="https://vittominacori.github.io/erc20-generator/"
+                  href="https://www.smartcontracts.tools/token-generator/ethereum/"
                   target="_blank">
           ERC20 on Ethereum
         </b-button>
         <b-button size="sm"
                   variant="outline-warning"
                   class="mt-2 text-uppercase p-3 btn-sm-block"
-                  href="https://vittominacori.github.io/bep20-generator/"
+                  href="https://www.smartcontracts.tools/token-generator/bsc/"
                   target="_blank">
           BEP20 on BSC
         </b-button>
         <b-button size="sm"
                   variant="outline-violet"
                   class="mt-2 text-uppercase p-3 btn-sm-block"
-                  href="https://vittominacori.github.io/polygon-generator/"
+                  href="https://www.smartcontracts.tools/token-generator/polygon/"
                   target="_blank">
           ERC20 on Polygon
         </b-button>

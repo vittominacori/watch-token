@@ -19,9 +19,9 @@
       <b-navbar-nav class="ml-auto">
         <b-nav-item-dropdown text="Create Token" right>
           <b-dropdown-item disabled>Network</b-dropdown-item>
-          <b-dropdown-item target="_blank" href="https://vittominacori.github.io/erc20-generator/">Ethereum</b-dropdown-item>
-          <b-dropdown-item target="_blank" href="https://vittominacori.github.io/bep20-generator/">Binance Smart Chain</b-dropdown-item>
-          <b-dropdown-item target="_blank" href="https://vittominacori.github.io/polygon-generator/">Polygon</b-dropdown-item>
+          <b-dropdown-item target="_blank" href="https://www.smartcontracts.tools/token-generator/ethereum/">Ethereum</b-dropdown-item>
+          <b-dropdown-item target="_blank" href="https://www.smartcontracts.tools/token-generator/bsc/">Binance Smart Chain</b-dropdown-item>
+          <b-dropdown-item target="_blank" href="https://www.smartcontracts.tools/token-generator/polygon/">Polygon</b-dropdown-item>
         </b-nav-item-dropdown>
         <b-nav-item target="_blank" href="https://vittominacori.medium.com/how-to-add-token-to-metamask-fba11854f6cd">
           <small>About</small>
