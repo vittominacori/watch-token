@@ -45,6 +45,17 @@
           <b-icon-share></b-icon-share>
         </b-link>
       </b-jumbotron>
+      <b-alert show variant="warning">
+        <h4 class="alert-heading">
+          View <b-link :href="sctLink" class="text-dark">{{ token.name }}</b-link> on SmartContracts Tools.
+        </h4>
+        <hr>
+        <h4>Want to try new features?</h4>
+        <p class="mb-0">
+          We are moving our Token Watcher tool to a new house.<br>
+          We created <b>SmartContracts Tools</b> at <b>NONCEPT.</b>
+        </p>
+      </b-alert>
       <b-modal ref="shareModal" hide-footer :title="`Share ${token.name} page`">
         <b-row>
           <b-col lg="12">
@@ -104,6 +115,12 @@
         token: {},
       };
     },
+    computed: {
+      sctLink () {
+        const network = this.network.current ? (this.network.current.blockchain === 'Ethereum' ? `ethereum_${this.currentNetwork}` : this.currentNetwork) : 'ethereum_mainnet';
+        return `https://www.smartcontracts.tools/token-watcher/page/?hash=${this.token.hash}&network=${network}`;
+      },
+    },
     mounted () {
       this.currentNetwork = this.getParam('network') || this.network.default;
       this.initDapp();
@@ -123,6 +140,7 @@
         if (tokenHash) {
           const tokenInfo = JSON.parse(this.web3.utils.hexToAscii(tokenHash));
 
+          this.token.hash = tokenHash;
           this.token.address = tokenInfo.address;
           this.initContract(this.token.address);
 
@@ -178,14 +196,7 @@
         }
       },
       async shareToken () {
-        const tokenHash = this.web3.utils.toHex(
-          JSON.stringify({
-            address: this.token.address,
-            logo: this.token.logo,
-          }),
-        );
-
-        this.share.tokenLink = window.location.origin + this.$withBase(`/page/?hash=${tokenHash}&network=${this.currentNetwork}`); // eslint-disable-line max-len
+        this.share.tokenLink = window.location.origin + this.$withBase(`/page/?hash=${this.token.hash}&network=${this.currentNetwork}`); // eslint-disable-line max-len
 
         this.share.shortLink = await this.shorten(this.share.tokenLink);
 
