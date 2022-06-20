@@ -12,6 +12,23 @@
       </b-card>
     </b-col>
     <b-col v-if="loaded" lg="8" offset-lg="2" class="mt-2 p-0">
+      <b-link :href="sctLink" class="text-dark text-decoration-none">
+      <b-card class="mb-4" role="button" bg-variant="warning">
+        <b-row>
+          <b-col sm="2">
+            <b-img :src="$withBase(`/assets/images/token-watcher.svg`)" fluid></b-img>
+          </b-col>
+          <b-col sm="10">
+            <h3>View {{ token.name }} on SmartContracts Tools.</h3>
+            <h4>Try the new Token Watcher.</h4>
+          </b-col>
+        </b-row>
+        <template #footer>
+          Want to try new features? We created <b>SmartContracts Tools</b> at <b>NONCEPT.</b>
+        </template>
+      </b-card>
+      </b-link>
+
       <b-jumbotron bg-variant="light" header-level="4" class="px-3 py-4">
         <template #header>
           <b-media class="mb-3">
@@ -45,17 +62,6 @@
           <b-icon-share></b-icon-share>
         </b-link>
       </b-jumbotron>
-      <b-alert show variant="warning">
-        <h4 class="alert-heading">
-          View <b-link :href="sctLink" class="text-dark">{{ token.name }}</b-link> on SmartContracts Tools.
-        </h4>
-        <hr>
-        <h4>Want to try new features?</h4>
-        <p class="mb-0">
-          We are moving our Token Watcher tool to a new house.<br>
-          We created <b>SmartContracts Tools</b> at <b>NONCEPT.</b>
-        </p>
-      </b-alert>
       <b-modal ref="shareModal" hide-footer :title="`Share ${token.name} page`">
         <b-row>
           <b-col lg="12">
