@@ -73,7 +73,7 @@ export default {
           optimism_mainnet: {
             blockchain: 'Optimism',
             tokenType: 'ERC20',
-            web3Provider: `https://mainnet.optimism.io`,
+            web3Provider: 'https://mainnet.optimism.io',
             explorerLink: 'https://optimistic.etherscan.io',
             explorerName: 'Optimistic Ethereum L2 Explorer',
             id: 10,
@@ -100,7 +100,7 @@ export default {
           etc_mainnet: {
             blockchain: 'Ethereum Classic',
             tokenType: 'ERC20',
-            web3Provider: `https://www.ethercluster.com/etc`,
+            web3Provider: 'https://www.ethercluster.com/etc',
             explorerLink: 'https://blockscout.com/etc/mainnet',
             explorerName: 'Ethereum Classic ETC Explorer',
             id: 61,
@@ -163,7 +163,7 @@ export default {
           arbitrum_mainnet: {
             blockchain: 'Arbitrum',
             tokenType: 'ERC20',
-            web3Provider: `https://arb1.arbitrum.io/rpc`,
+            web3Provider: 'https://arb1.arbitrum.io/rpc',
             explorerLink: 'https://arbiscan.io',
             explorerName: 'Arbitrum (ETH) Blockchain Explorer',
             id: 42161,
@@ -172,7 +172,7 @@ export default {
           avalanche_mainnet: {
             blockchain: 'Avalanche Mainnet C-Chain',
             tokenType: 'ERC20',
-            web3Provider: `https://api.avax.network/ext/bc/C/rpc`,
+            web3Provider: 'https://api.avax.network/ext/bc/C/rpc',
             explorerLink: 'https://snowtrace.io/',
             explorerName: 'Harmony Blockchain Explorer',
             id: 43114,
@@ -181,7 +181,7 @@ export default {
           harmony_mainnet: {
             blockchain: 'Harmony',
             tokenType: 'ERC20',
-            web3Provider: `https://api.harmony.one`,
+            web3Provider: 'https://api.harmony.one',
             explorerLink: 'https://explorer.harmony.one/',
             explorerName: 'Harmony Blockchain Explorer',
             id: 1666600000,

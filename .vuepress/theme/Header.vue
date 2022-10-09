@@ -9,7 +9,7 @@
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav>
         <b-nav-item :href="$withBase('/create/')">Ethereum</b-nav-item>
-        <b-nav-item :href="$withBase('/create/?network=Optimism_mainnet')">Optimism</b-nav-item>
+        <b-nav-item :href="$withBase('/create/?network=optimism_mainnet')">Optimism</b-nav-item>
         <b-nav-item :href="$withBase('/create/?network=etc_mainnet')">Ethereum Classic</b-nav-item>
         <b-nav-item :href="$withBase('/create/?network=bsc_mainnet')">Binance Smart Chain</b-nav-item>
         <b-nav-item :href="$withBase('/create/?network=gnosis_mainnet')">Gnosis</b-nav-item>
