@@ -22,7 +22,9 @@ export default {
           56: 'bsc_mainnet',
           97: 'bsc_testnet',
           137: 'polygon_mainnet',
+	  2000: 'dogechain_mainnet',
           80001: 'polygon_mumbai',
+	  1666600000: 'harmony_mainnet',
 	  1666600000: 'harmony_mainnet',
         },
         list: {
@@ -107,6 +109,24 @@ export default {
             id: 80001,
             name: 'Matic Mumbai',
           },
+          kcc_mainnet: { // eslint-disable-line camelcase
+            blockchain: 'KuCoin Community Chain',
+            tokenType: 'ERC20',
+            web3Provider: 'https://rpc-mainnet.kcc.network',
+            explorerLink: 'https://scan.kcc.io',
+            explorerName: 'KCC-Mainnet KCC Explorer',
+            id: 321,
+            name: 'KCC Mainnet',
+          },
+          dogechain_mainnet: { // eslint-disable-line camelcase
+            blockchain: 'Dogechain',
+            tokenType: 'ERC20',
+            web3Provider: 'https://rpc01.dogechain.dog',
+            explorerLink: 'https://explorer.dogechain.dog',
+            explorerName: 'Mainnet Dogechain Explorer',
+            id: 2000,
+            name: 'Dogechain Mainnet',
+          },
           harmony_mainnet: {
             blockchain: 'Harmony',
             tokenType: 'ERC20',
@@ -121,6 +141,8 @@ export default {
           'Ethereum',
           'Binance Smart Chain',
           'Polygon',
+	  'Dogechain',
+	  'Harmony',
         ],
       },
       contracts: {
