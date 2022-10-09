@@ -2,7 +2,7 @@
   "title": "WatchToken",
   "name": "watch-token",
   "version": "1.0.0",
-  "description": "Create a Widget for your ERC20 or BEP20 Token and share it with your users. Add your Token to DApp browsers or MetaMask both on Ethereum, Binance Smart Chain, Polygon Network, KuCoin Community Chain, Harmony or Dogechain.",
+  "description": "Create a Widget for your ERC20 or BEP20 Token and share it with your users. Add your Token to DApp browsers or MetaMask both on Ethereum, Binance Smart Chain, Gnosis, Polygon Network, KuCoin Community Chain, Dogechain or Harmony.",
   "scripts": {
     "lint": "eslint .vuepress",
     "lint:fix": "eslint .vuepress --fix",
