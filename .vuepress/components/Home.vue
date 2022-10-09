@@ -11,13 +11,25 @@
         <hr class="my-4">
         <p>
           Create a Widget for your ERC20 or BEP20 Token.<br>
-          Add your Token to DApp browsers or MetaMask both on Ethereum, Binance Smart Chain, Polygon Network, Harmony, KuCoin Community Chain, Dogechain.
+          Add your Token to DApp browsers or MetaMask both on Ethereum, Optimism, Ethereum Classic, Binance Smart Chain, Polygon Network, KuCoin Community Chain, Dogechain, Arbitrum, Avalanche or Harmony.
         </p>
         <b-button size="sm"
                   variant="info"
                   class="mt-2 text-uppercase p-3 btn-sm-block"
                   to="/create/">
           Ethereum
+        </b-button>
+        <b-button size="sm"
+                  variant="warning"
+                  class="mt-2 text-uppercase p-3 btn-sm-block"
+                  to="/create/?network=optimism_mainnet">
+          Optimism
+        </b-button>
+        <b-button size="sm"
+                  variant="warning"
+                  class="mt-2 text-uppercase p-3 btn-sm-block"
+                  to="/create/?network=etc_mainnet">
+          Ethereum Classic
         </b-button>
         <b-button size="sm"
                   variant="warning"
@@ -40,14 +52,26 @@
         <b-button size="sm"
                   variant="violet"
                   class="mt-2 text-uppercase p-3 btn-sm-block"
-                  to="/create/?network=harmony_mainnet">
-          Harmony 
+                  to="/create/?network=dogechain_mainnet">
+          Dogechain
         </b-button>
         <b-button size="sm"
                   variant="violet"
                   class="mt-2 text-uppercase p-3 btn-sm-block"
-                  to="/create/?network=dogechain_mainnet">
-          Dogechain
+                  to="/create/?network=arbitrum_mainnet">
+          Arbitrum
+        </b-button>
+        <b-button size="sm"
+                  variant="violet"
+                  class="mt-2 text-uppercase p-3 btn-sm-block"
+                  to="/create/?network=avalanche_mainnet">
+          Avalanche
+        </b-button>
+        <b-button size="sm"
+                  variant="violet"
+                  class="mt-2 text-uppercase p-3 btn-sm-block"
+                  to="/create/?network=harmony_mainnet">
+          Harmony 
         </b-button>
       </b-jumbotron>
     </b-col>
