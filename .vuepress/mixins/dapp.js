@@ -21,6 +21,9 @@ export default {
           5: 'goerli',
           56: 'bsc_mainnet',
           97: 'bsc_testnet',
+          137: 'polygon_mainnet',
+          80001: 'polygon_mumbai',
+	  1666600000: 'harmony_mainnet',
         },
         list: {
           mainnet: {
@@ -103,6 +106,15 @@ export default {
             explorerName: 'PolygonScan',
             id: 80001,
             name: 'Matic Mumbai',
+          },
+          harmony_mainnet: {
+            blockchain: 'Harmony',
+            tokenType: 'ERC20',
+            web3Provider: `https://api.harmony.one`,
+            explorerLink: 'https://explorer.harmony.one/',
+            explorerName: 'Harmony Blockchain Explorer',
+            id: 1,
+            name: 'Harmony Mainnet',
           },
         },
         blockchains: [

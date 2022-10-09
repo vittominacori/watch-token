@@ -11,7 +11,7 @@
         <hr class="my-4">
         <p>
           Create a Widget for your ERC20 or BEP20 Token.<br>
-          Add your Token to DApp browsers or MetaMask both on Ethereum, Binance Smart Chain or Polygon Network.
+          Add your Token to DApp browsers or MetaMask both on Ethereum, Binance Smart Chain, Polygon Network, Harmony, Dogechain.
         </p>
         <b-button size="sm"
                   variant="info"
@@ -30,6 +30,12 @@
                   class="mt-2 text-uppercase p-3 btn-sm-block"
                   to="/create/?network=polygon_mainnet">
           Polygon
+        </b-button>
+        <b-button size="sm"
+                  variant="violet"
+                  class="mt-2 text-uppercase p-3 btn-sm-block"
+                  to="/create/?network=harmony_mainnet">
+          Harmony 
         </b-button>
       </b-jumbotron>
     </b-col>

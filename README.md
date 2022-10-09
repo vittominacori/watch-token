@@ -7,16 +7,16 @@ meta:
     - property: og:title
       content: WatchToken | Create a Widget for your ERC20 or BEP20 Token
     - property: twitter:description
-      content: Create a Widget for your ERC20 or BEP20 Token and share it with your users. Add your Token to DApp browsers or MetaMask both on Ethereum, Binance Smart Chain or Polygon Network.
+      content: Create a Widget for your ERC20 or BEP20 Token and share it with your users. Add your Token to DApp browsers or MetaMask both on Ethereum, Binance Smart Chain, Polygon Network, Harmony.
     - property: og:description
-      content: Create a Widget for your ERC20 or BEP20 Token and share it with your users. Add your Token to DApp browsers or MetaMask both on Ethereum, Binance Smart Chain or Polygon Network.
+      content: Create a Widget for your ERC20 or BEP20 Token and share it with your users. Add your Token to DApp browsers or MetaMask both on Ethereum, Binance Smart Chain or Polygon Network, Harmony.
     - property: og:url
       content: https://vittominacori.github.io/watch-token/
 ---
 
 # WatchToken
 
-Create a Widget for your ERC20 or BEP20 Token. Add your Token to DApp browsers or MetaMask both on Ethereum, Binance Smart Chain or Polygon Network.
+Create a Widget for your ERC20 or BEP20 Token. Add your Token to DApp browsers or MetaMask both on Ethereum, Binance Smart Chain, Polygon Network or Harmony.
 
 Enter your ERC20 or BEP20 Token details, create a Widget and share it with your users.
 
