@@ -6,9 +6,9 @@
   "scripts": {
     "lint": "eslint .vuepress",
     "lint:fix": "eslint .vuepress --fix",
-    "dev": "vuepress dev",
-    "build": "vuepress build",
-    "deploy": "vuepress build && sh scripts/deploy.sh"
+    "dev": "export NODE_OPTIONS=--openssl-legacy-provider && vuepress dev",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && vuepress build",
+    "deploy": "export NODE_OPTIONS=--openssl-legacy-provider && vuepress build && sh scripts/deploy.sh"
   },
   "keywords": [],
   "bugs": {
@@ -28,7 +28,6 @@
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
     "@fortawesome/vue-fontawesome": "^2.0.6",
     "@saeris/vue-spinners": "^1.0.8",
-    "@vuepress/plugin-google-analytics": "^1.9.7",
     "babel-eslint": "^10.1.0",
     "bitly": "^7.1.2",
     "bootstrap-vue": "^2.21.2",
@@ -43,7 +42,8 @@
     "sass-loader": "^10.2.1",
     "vee-validate": "2.2.15",
     "vue-eslint-parser": "^8.3.0",
-    "vuepress": "^1.9.7",
+    "vuepress": "^1.9.8",
+    "vuepress-plugin-google-gtag": "^1.0.1",
     "vuepress-plugin-facebook-pixel": "^1.0.0"
   }
 }
