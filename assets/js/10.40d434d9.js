@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[10],{259:function(n,e,t){"use strict";t.r(e);var o={name:"Footer"},u=t(16),l=Object(u.a)(o,(function(){return(0,this._self._c)("div")}),[],!1,null,null,null);e.default=l.exports}}]);
