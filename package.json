@@ -21,7 +21,7 @@
     "url": "https://github.com/vittominacori/watch-token.git"
   },
   "dependencies": {
-    "web3": "^1.7.3"
+    "web3": "^4.6.0"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
