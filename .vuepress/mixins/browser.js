@@ -1,21 +1,21 @@
 export default {
-  data () {
+  data() {
     return {
       embedded: false,
     };
   },
-  mounted () {
+  mounted() {
     this.embedded = this.getParam('embedded') || false;
   },
   methods: {
-    makeToast (title, text, variant = null) {
+    makeToast(title, text, variant = null) {
       this.$bvToast.toast(text, {
         title: title,
         variant: variant,
         solid: true,
       });
     },
-    promisify (fn, ...args) {
+    promisify(fn, ...args) {
       return new Promise((resolve, reject) => {
         fn(...args, (err, res) => {
           if (err) {
@@ -26,11 +26,12 @@ export default {
         });
       });
     },
-    getParam (param) {
+    getParam(param) {
       const vars = {};
       window.location.href.replace(location.hash, '').replace(
         /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
-        function (m, key, value) { // callback
+        function (m, key, value) {
+          // callback
           vars[key] = value !== undefined ? value : '';
         },
       );

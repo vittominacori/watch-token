@@ -6,7 +6,7 @@ const bitly = new BitlyClient(config.bitlyAccessToken, {});
 
 export default {
   methods: {
-    async shorten (url) {
+    async shorten(url) {
       try {
         const response = await bitly.shorten(url);
         return response.link;
