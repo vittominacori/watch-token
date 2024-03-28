@@ -4,8 +4,9 @@
   "version": "1.0.0",
   "description": "Create a Widget for your ERC20 or BEP20 Token and share it with your users. Add your Token to DApp browsers or MetaMask both on Ethereum, Binance Smart Chain or Polygon Network.",
   "scripts": {
-    "lint": "eslint .vuepress",
-    "lint:fix": "eslint .vuepress --fix",
+    "lint:prettier": "prettier --check .",
+    "lint": "npm run lint:prettier",
+    "lint:fix": "prettier --write --list-different .",
     "dev": "export NODE_OPTIONS=--openssl-legacy-provider && vuepress dev",
     "build": "export NODE_OPTIONS=--openssl-legacy-provider && vuepress build",
     "deploy": "export NODE_OPTIONS=--openssl-legacy-provider && vuepress build && sh scripts/deploy.sh"
@@ -21,29 +22,21 @@
     "url": "https://github.com/vittominacori/watch-token.git"
   },
   "dependencies": {
-    "web3": "^1.7.3"
+    "web3": "^1.10.4"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.1.1",
-    "@fortawesome/free-brands-svg-icons": "^6.1.1",
-    "@fortawesome/vue-fontawesome": "^2.0.6",
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
+    "@fortawesome/vue-fontawesome": "^2.0.10",
     "@saeris/vue-spinners": "^1.0.8",
-    "babel-eslint": "^10.1.0",
     "bitly": "^7.1.2",
-    "bootstrap-vue": "^2.21.2",
-    "eslint": "^7.32.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.2.0",
-    "eslint-plugin-standard": "^5.0.0",
-    "eslint-plugin-vue": "^8.6.0",
-    "node-sass": "^6.0.1",
-    "sass-loader": "^10.2.1",
+    "bootstrap-vue": "^2.23.1",
     "vee-validate": "2.2.15",
-    "vue-eslint-parser": "^8.3.0",
-    "vuepress": "^1.9.8",
-    "vuepress-plugin-google-gtag": "^1.0.1",
-    "vuepress-plugin-facebook-pixel": "^1.0.0"
+    "prettier": "^3.2.5",
+    "sass": "1.64.2",
+    "sass-loader": "^10.5.2",
+    "vue-cookie-law": "^1.13.3",
+    "vuepress": "^1.9.10",
+    "vuepress-plugin-gtag": "vittominacori/vuepress-plugin-gtag"
   }
 }
